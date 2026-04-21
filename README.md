@@ -39,10 +39,10 @@
 <p><sup>&dagger;</sup> Corresponding author</p>
 
 <p>
-  <a href="https://arxiv.org/abs/2604.18210">[Paper]</a>
-  <a href="https://arxiv.org/pdf/2604.18210">[PDF]</a>
-  <a href="https://shengxu.net/TacticGen/">[Project Page]</a>
-  <a href="LICENSE">[License]</a>
+  <a href="https://arxiv.org/abs/2604.18210">[📄 Paper]</a>
+  <a href="https://arxiv.org/pdf/2604.18210">[📕 PDF]</a>
+  <a href="https://shengxu.net/TacticGen/">[🌐 Project Page]</a>
+  <a href="LICENSE">[⚖️ License]</a>
 </p>
 
 </div>
