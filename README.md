@@ -51,9 +51,9 @@ This repository is being prepared for a full open-source release. Currently, it 
 
 ## Overview
 
-![TacticGen motivation](website/static/images/tacticgen/TacticGen-motivation.png)
+![TacticGen motivation](docs/static/images/tacticgen/TacticGen-motivation.png)
 
-![TacticGen framework](website/static/images/tacticgen/TacticGen-framework.png)
+![TacticGen framework](docs/static/images/tacticgen/TacticGen-framework.png)
 
 TacticGen is a foundation-oriented model for football tactical generation. It is designed to be adaptable to various tactical objectives and scalable to large football datasets. Key features include:
 
