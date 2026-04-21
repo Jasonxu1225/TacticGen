@@ -1,0 +1,1811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>TacticGen | Grounding Adaptable and Scalable Generation of Football Tactics</title>
+  <meta name="title" content="TacticGen: Grounding Adaptable and Scalable Generation of Football Tactics">
+  <meta name="description" content="Project page for TacticGen, a football tactics foundation-oriented model for multi-agent trajectory generation, guided tactical design, and expert-validated utility.">
+  <meta name="keywords" content="football tactics, soccer analytics, multi-agent trajectory generation, diffusion transformer, sports analytics, tactical generation">
+  <meta name="author" content="Sheng Xu, Guiliang Liu, Tarak Kharrat, Yudong Luo, Mohamed Aloulou, Javier Lopez Pena, Konstantin Sofeikov, Adam Reid, Paul Roberts, Steven Spencer, Joe Carnall, Ian McHale, Oliver Schulte, Hongyuan Zha, Wei-Shi Zheng">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#10281b">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="TacticGen Project Page">
+  <meta property="og:title" content="TacticGen: Grounding Adaptable and Scalable Generation of Football Tactics">
+  <meta property="og:description" content="A project page for adaptable, scalable, and expert-validated football tactic generation.">
+  <meta property="og:image" content="static/images/tacticgen/pass-c.jpg">
+  <meta property="og:image:alt" content="TacticGen trajectory visualization">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="TacticGen: Grounding Adaptable and Scalable Generation of Football Tactics">
+  <meta name="twitter:description" content="A project page for adaptable, scalable, and expert-validated football tactic generation.">
+  <meta name="twitter:image" content="static/images/tacticgen/pass-c.jpg">
+
+  <meta name="citation_title" content="TacticGen: Grounding Adaptable and Scalable Generation of Football Tactics">
+  <meta name="citation_author" content="Xu, Sheng">
+  <meta name="citation_author" content="Liu, Guiliang">
+  <meta name="citation_author" content="Kharrat, Tarak">
+  <meta name="citation_author" content="Luo, Yudong">
+  <meta name="citation_author" content="Aloulou, Mohamed">
+  <meta name="citation_author" content="Lopez Pena, Javier">
+  <meta name="citation_author" content="Sofeikov, Konstantin">
+  <meta name="citation_author" content="Reid, Adam">
+  <meta name="citation_author" content="Roberts, Paul">
+  <meta name="citation_author" content="Spencer, Steven">
+  <meta name="citation_author" content="Carnall, Joe">
+  <meta name="citation_author" content="McHale, Ian">
+  <meta name="citation_author" content="Schulte, Oliver">
+  <meta name="citation_author" content="Zha, Hongyuan">
+  <meta name="citation_author" content="Zheng, Wei-Shi">
+  <meta name="citation_journal_title" content="IEEE Transactions on Pattern Analysis and Machine Intelligence">
+  <meta name="citation_publication_date" content="2026">
+
+  <link rel="icon" type="image/png" href="static/images/logos/TacticGen-logo.png">
+  <link rel="apple-touch-icon" href="static/images/logos/TacticGen-logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/index.css">
+  <script defer src="static/js/index.js"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "TacticGen: Grounding Adaptable and Scalable Generation of Football Tactics",
+    "description": "TacticGen formulates football tactics as conditional multi-agent trajectory generation and supports guidance through rules, natural language, and value models.",
+    "author": [
+      { "@type": "Person", "name": "Sheng Xu" },
+      { "@type": "Person", "name": "Guiliang Liu" },
+      { "@type": "Person", "name": "Tarak Kharrat" },
+      { "@type": "Person", "name": "Yudong Luo" },
+      { "@type": "Person", "name": "Mohamed Aloulou" },
+      { "@type": "Person", "name": "Javier Lopez Pena" },
+      { "@type": "Person", "name": "Konstantin Sofeikov" },
+      { "@type": "Person", "name": "Adam Reid" },
+      { "@type": "Person", "name": "Paul Roberts" },
+      { "@type": "Person", "name": "Steven Spencer" },
+      { "@type": "Person", "name": "Joe Carnall" },
+      { "@type": "Person", "name": "Ian McHale" },
+      { "@type": "Person", "name": "Oliver Schulte" },
+      { "@type": "Person", "name": "Hongyuan Zha" },
+      { "@type": "Person", "name": "Wei-Shi Zheng" }
+    ],
+    "datePublished": "2026-01-01",
+    "image": "static/images/tacticgen/pass-c.jpg",
+    "keywords": [
+      "football tactics",
+      "soccer analytics",
+      "multi-agent trajectory generation",
+      "diffusion transformer",
+      "sports analytics"
+    ],
+    "abstract": "TacticGen is a generative model for adaptable and scalable football tactic generation, trained on over 3.3 million events and 100 million tracking frames, and guided by rules, language, or neural value models.",
+    "isAccessibleForFree": true
+  }
+  </script>
+</head>
+<body>
+  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">Top</button>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top">TacticGen</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="#overview">Overview</a>
+        <a href="#motivation">Motivation</a>
+        <a href="#framework">Framework</a>
+        <a href="#method">Method</a>
+        <a href="#dataset">Dataset</a>
+        <a href="#results">Results</a>
+        <a href="#videos">Videos</a>
+        <a href="#evaluation">Case Study</a>
+        <a href="#paper">Paper</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero-section" id="overview">
+      <div class="hero-noise"></div>
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <!-- <p class="eyebrow">TPAMI 2026 Project Page</p> -->
+          <h1 class="hero-title">
+            <span class="hero-title-mark">TacticGen</span><span class="hero-title-rest">: Grounding Adaptable and Scalable Generation of Football Tactics</span>
+          </h1>
+          <p class="hero-summary">
+            TacticGen reframes football analytics from predicting what may happen to generating what should happen. It models
+            coordinated player and ball movements with a multi-agent diffusion transformer, then guides generation toward tactical
+            objectives expressed as rules, natural language, or learned value functions.
+          </p>
+
+          <div class="author-stack">
+            <div class="author-line">
+              <span class="author-name">Sheng Xu<sup>1</sup></span>
+              <span class="author-name">Guiliang Liu<sup>1&dagger;</sup></span>
+              <span class="author-name">Tarak Kharrat<sup>2</sup></span>
+              <span class="author-name">Yudong Luo<sup>1</sup></span>
+              <span class="author-name">Mohamed Aloulou<sup>2</sup></span>
+              <span class="author-name">Javier L&oacute;pez Pe&ntilde;a<sup>2</sup></span>
+            </div>
+            <div class="author-line">
+              <span class="author-name">Konstantin Sofeikov<sup>2</sup></span>
+              <span class="author-name">Adam Reid<sup>2</sup></span>
+              <span class="author-name">Paul Roberts<sup>2</sup></span>
+              <span class="author-name">Steven Spencer<sup>3</sup></span>
+              <span class="author-name">Joe Carnall<sup>3</sup></span>
+            </div>
+            <div class="author-line">
+              <span class="author-name">Ian McHale<sup>4</sup></span>
+              <span class="author-name">Oliver Schulte<sup>5</sup></span>
+              <span class="author-name">Hongyuan Zha<sup>1</sup></span>
+              <span class="author-name">Wei-Shi Zheng<sup>6</sup></span>
+            </div>
+          </div>
+
+          <div class="affiliations">
+            <div class="affiliation-item">
+              <span class="affiliation-logo-shell shell-cuhk">
+                <img class="affiliation-logo logo-cuhk" src="static/images/logos/cuhk-logo.svg" alt="The Chinese University of Hong Kong, Shenzhen logo">
+              </span>
+              <p><sup>1</sup> The Chinese University of Hong Kong, Shenzhen</p>
+            </div>
+            <div class="affiliation-item">
+              <span class="affiliation-logo-shell shell-ra">
+                <img class="affiliation-logo logo-ra" src="static/images/logos/ra-logo.png" alt="Real Analytics logo">
+              </span>
+              <p><sup>2</sup> Real Analytics</p>
+            </div>
+            <div class="affiliation-item">
+              <span class="affiliation-logo-shell shell-bcfc">
+                <img class="affiliation-logo logo-bcfc" src="static/images/logos/bcfc-logo.svg" alt="Birmingham City Football Club logo">
+              </span>
+              <p><sup>3</sup> Birmingham City Football Club</p>
+            </div>
+            <div class="affiliation-item">
+              <span class="affiliation-logo-shell shell-liverpool">
+                <img class="affiliation-logo logo-liverpool" src="static/images/logos/liverpool-logo.svg" alt="University of Liverpool logo">
+              </span>
+              <p><sup>4</sup> University of Liverpool</p>
+            </div>
+            <div class="affiliation-item">
+              <span class="affiliation-logo-shell shell-sfu">
+                <img class="affiliation-logo logo-sfu" src="static/images/logos/sfu-logo.svg" alt="Simon Fraser University logo">
+              </span>
+              <p><sup>5</sup> Simon Fraser University</p>
+            </div>
+            <div class="affiliation-item">
+              <span class="affiliation-logo-shell shell-sysu">
+                <img class="affiliation-logo logo-sysu" src="static/images/logos/sysu-logo.svg" alt="Sun Yat-sen University logo">
+              </span>
+              <p><sup>6</sup> Sun Yat-sen University</p>
+            </div>
+            <p class="affiliation-note"><sup>&dagger;</sup> Corresponding author.</p>
+          </div>
+
+          <div class="hero-resource-nav reveal" aria-label="Project resources">
+            <a
+              class="resource-link resource-link-arxiv"
+              href="https://arxiv.org/abs/2604.18210"
+              target="_blank"
+              rel="noopener noreferrer">
+              <span class="resource-icon-shell" aria-hidden="true">
+                <img
+                  class="resource-icon resource-icon-arxiv"
+                  src="https://arxiv.org/static/browse/0.3.4/images/arxiv-logomark-small-white.svg"
+                  alt=""
+                  loading="lazy">
+              </span>
+              <span class="resource-copy">
+                <span class="resource-name">Paper</span>
+              </span>
+              <span class="resource-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a
+              class="resource-link resource-link-github"
+              href="https://github.com/Jasonxu1225/TacticGen"
+              target="_blank"
+              rel="noopener noreferrer">
+              <span class="resource-icon-shell" aria-hidden="true">
+                <svg class="resource-icon" viewBox="0 0 496 512" role="img" focusable="false" aria-hidden="true">
+                  <path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path>
+                </svg>
+              </span>
+              <span class="resource-copy">
+                <span class="resource-name">Code</span>
+              </span>
+              <span class="resource-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a
+              class="resource-link resource-link-partner"
+              href="https://www.bcfc.com/"
+              target="_blank"
+              rel="noopener noreferrer">
+              <span class="resource-icon-shell" aria-hidden="true">
+                <img
+                  class="resource-icon resource-icon-bcfc"
+                  src="static/images/logos/bcfc-logo.svg"
+                  alt=""
+                  loading="lazy">
+              </span>
+              <span class="resource-copy">
+                <span class="resource-name">Partner</span>
+              </span>
+              <span class="resource-arrow" aria-hidden="true">↗</span>
+            </a>
+          </div>
+
+          <div class="metric-strip">
+            <article class="metric-card">
+              <strong>3.3M+</strong>
+              <span>annotated events for training</span>
+            </article>
+            <article class="metric-card">
+              <strong>100M</strong>
+              <span>real tracking frames</span>
+            </article>
+            <article class="metric-card">
+              <strong>1432</strong>
+              <span>matches from 2018-2025</span>
+            </article>
+            <article class="metric-card">
+              <strong>80%</strong>
+              <span>of experts favored TacticGen</span>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-shell section-soft" id="highlights">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="kicker">Highlights</p>
+          <h2>Why this paper matters</h2>
+          <p>
+            TacticGen is positioned as a <strong>foundation-oriented model</strong> for football tactical design:
+            <strong>accurate enough</strong> to model realistic movement, <strong>adaptable enough</strong> to respond to different
+            objectives, and <strong>scalable enough</strong> to improve with larger models and more data.
+          </p>
+        </div>
+
+        <div class="card-grid card-grid-four">
+          <article class="info-card reveal">
+            <span class="card-index">01</span>
+            <h3>From prediction to generation</h3>
+            <p>
+              The paper reframes football analytics from <strong>forecasting likely play evolution</strong> to
+              <strong>generating coordinated tactical alternatives</strong>.
+            </p>
+          </article>
+          <article class="info-card reveal">
+            <span class="card-index">02</span>
+            <h3>Multi-agent football modeling</h3>
+            <p>
+              TacticGen jointly models <strong>the ball and 22 players</strong>, explicitly handling
+              <strong>cooperative and competitive interactions</strong>.
+            </p>
+          </article>
+          <article class="info-card reveal">
+            <span class="card-index">03</span>
+            <h3>Zero-shot flexible tactical guidance</h3>
+            <p>
+              During inference, a single trained generator can be steered by <strong>rule functions</strong>,
+              <strong>natural language prompts</strong>, or <strong>learned value models</strong>.
+            </p>
+          </article>
+          <article class="info-card reveal">
+            <span class="card-index">04</span>
+            <h3>Validated with practitioners</h3>
+            <p>
+              Case studies with football experts show generated tactics are <strong>hard to distinguish from real play</strong>
+              and <strong>tactically valuable</strong>.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-shell section-story" id="motivation">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="kicker">Motivation</p>
+          <h2>Why football tactics should be generated, not only predicted</h2>
+          <p>
+            This figure sets up the problem shift behind TacticGen: instead of only forecasting how play may unfold, the system should
+            also produce coordinated tactical alternatives that align with a coach's intent.
+          </p>
+        </div>
+
+        <figure class="story-figure-card reveal">
+          <img
+            class="story-figure-image"
+            src="static/images/tacticgen/TacticGen-motivation.png"
+            alt="TacticGen motivation figure showing the shift from prediction to tactical generation">
+          <figcaption class="story-figure-meta">
+            <div>
+              <span class="story-pill">Motivation Figure</span>
+              <h3>From descriptive football analytics to tactical decision support</h3>
+              <p>
+                The motivation figure introduces the paper's core question: how to move from passive trajectory prediction toward
+                controllable generation that can assist tactical planning.
+              </p>
+            </div>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section-shell section-story section-story-alt" id="framework">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="kicker">Framework</p>
+          <h2>The TacticGen pipeline</h2>
+          <p>
+            After the method overview, this figure gives a cleaner system-level view of how context encoding, diffusion generation, and
+            tactical guidance fit together inside the complete framework.
+          </p>
+        </div>
+
+        <figure class="story-figure-card story-figure-card-wide reveal">
+          <img
+            class="story-figure-image"
+            src="static/images/tacticgen/TacticGen-framework.png"
+            alt="TacticGen framework figure showing the pipeline, conditioning inputs, and guidance modules">
+          <figcaption class="story-figure-meta">
+            <div>
+              <span class="story-pill">Framework Figure</span>
+              <h3>Conditioning, generation, and guidance in one model stack</h3>
+              <p>
+                The framework figure ties the paper together by showing how event context, player-ball history, and guidance signals are
+                fused into a unified generation pipeline for tactical control.
+              </p>
+            </div>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section-shell section-method" id="method">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="kicker">Method</p>
+          <h2>A controllable diffusion framework for football tactics</h2>
+          <p>
+            TacticGen builds on diffusion transformers and adapts them to football with explicit agent interaction modeling, context-aware
+            conditioning, and guidance at sampling time.
+          </p>
+        </div>
+
+        <div class="method-group-intro reveal">
+          <div>
+            <span class="method-group-label">Architecture</span>
+            <h3>The core generation pipeline</h3>
+          </div>
+          <p>
+            These three components define the base system: a multi-agent denoising backbone, a context encoder that summarizes match state,
+            and an inference-time objective module that makes the generator steerable.
+          </p>
+        </div>
+
+        <div class="method-layout">
+          <article class="method-card method-card-backbone reveal">
+            <div class="method-card-head">
+              <p class="method-tag">Backbone</p>
+              <span class="method-chip">DiT Core</span>
+            </div>
+            <h3>Multi-agent Diffusion Transformer</h3>
+            <p>
+              TacticGen extends DiT into a multi-agent setting so that noisy future trajectories can be denoised while preserving team-level
+              coordination and opponent response.
+            </p>
+            <p class="method-note">Joint denoising across players and ball keeps team structure coherent.</p>
+          </article>
+          <article class="method-card method-card-context reveal">
+            <div class="method-card-head">
+              <p class="method-tag">Context</p>
+              <span class="method-chip">Temporal Fusion</span>
+            </div>
+            <h3>Self-attentive context encoding</h3>
+            <p>
+              Past trajectories, ball history, event type, goal difference, and timestamps are fused into context embeddings through
+              MLP-based encoding, self-attention, and adaptive conditioning.
+            </p>
+            <p class="method-note">Rich match context is compressed into controllable conditioning signals.</p>
+          </article>
+          <article class="method-card method-card-guidance reveal">
+            <div class="method-card-head">
+              <p class="method-tag">Guidance</p>
+              <span class="method-chip">Inference Control</span>
+            </div>
+            <h3>Objective-driven generation</h3>
+            <p>
+              Classifier guidance steers samples at inference time, letting one pretrained generator adapt to tactical goals without retraining.
+            </p>
+            <p class="method-note">One generator, multiple tactical objectives, no extra training pass required.</p>
+          </article>
+        </div>
+
+        <div class="method-divider reveal">
+          <span class="method-divider-line"></span>
+          <p>
+            On top of the shared architecture, TacticGen exposes multiple control interfaces so the same pretrained model can respond to
+            different tactical design goals.
+          </p>
+        </div>
+
+        <div class="method-group-intro reveal">
+          <div>
+            <span class="method-group-label">Guidance</span>
+            <h3>Three ways to steer tactical generation</h3>
+          </div>
+          <p>
+            The guidance layer supports explicit football rules, coach-friendly language prompts, and learned value signals, covering both
+            interpretable control and performance-oriented optimization.
+          </p>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card feature-card-rule reveal">
+            <div class="feature-card-top">
+              <span class="feature-chip">01</span>
+              <img class="feature-icon" src="static/images/icons/rule.png" alt="Rules guidance icon">
+              <h3>Rule-based guidance</h3>
+            </div>
+            <p>
+              Differentiable tactical rules encode concepts like support width, zone occupation, or pitch control value.
+            </p>
+            <p class="feature-note">Best for explicit tactical priors and interpretable control.</p>
+          </article>
+          <article class="feature-card feature-card-language reveal">
+            <div class="feature-card-top">
+              <span class="feature-chip">02</span>
+              <img class="feature-icon" src="static/images/icons/language.png" alt="Language guidance icon">
+              <h3>Language-based guidance</h3>
+            </div>
+            <p>
+              Natural language instructions are turned into executable guidance functions, enabling high-level tactical prompting.
+            </p>
+            <p class="feature-note">Best for coach-friendly prompts and rapid what-if iteration.</p>
+          </article>
+          <article class="feature-card feature-card-value reveal">
+            <div class="feature-card-top">
+              <span class="feature-chip">03</span>
+              <img class="feature-icon" src="static/images/icons/model.png" alt="Value guidance icon">
+              <h3>Value-based guidance</h3>
+            </div>
+            <p>
+              A learned value model injects long-term utility into generation, guiding trajectories toward strategically stronger outcomes.
+            </p>
+            <p class="feature-note">Best for optimizing downstream tactical quality over longer horizons.</p>
+          </article>
+        </div>
+
+        <div class="method-divider reveal">
+          <span class="method-divider-line"></span>
+          <p>
+            The same architecture is deployed in two practical operating modes, letting TacticGen cover both realistic trajectory
+            prediction and more deliberate tactical design workflows.
+          </p>
+        </div>
+
+        <div class="method-group-intro reveal">
+          <div>
+            <span class="method-group-label">Operating Modes</span>
+            <h3>Two practical operating modes</h3>
+          </div>
+          <p>
+            Both modes share the same football-native generator, but differ in how much future ball information is available at inference
+            time and, as a result, what kind of coaching workflow they support best.
+          </p>
+        </div>
+
+        <div class="mode-layout">
+          <article class="mode-card mode-card-predictive reveal">
+            <div class="mode-card-head">
+              <span class="mode-chip">TacticGen-P</span>
+              <span class="mode-badge">Predictive</span>
+            </div>
+            <h3>Short-context trajectory prediction</h3>
+            <p class="mode-lead">
+              Predicts future player and ball trajectories from a short observed context window, making it a natural fit for realistic generation.
+            </p>
+            <ul class="mode-points">
+              <li>Uses recent match context without assuming the future ball path is known.</li>
+              <li>Best suited to realistic future trajectory prediction and model benchmarking.</li>
+            </ul>
+          </article>
+
+          <article class="mode-card mode-card-conditional reveal">
+            <div class="mode-card-head">
+              <span class="mode-chip">TacticGen-C</span>
+              <span class="mode-badge">Conditional</span>
+            </div>
+            <h3>Ball-conditioned tactical generation</h3>
+            <p class="mode-lead">
+              Conditions on a full ball trajectory so the model can coordinate player movement around an anticipated ball path.
+            </p>
+            <ul class="mode-points">
+              <li>Provides stronger control when analysts or coaches already have a target ball path in mind.</li>
+              <li>Best suited to tactical planning, design exploration, and controlled what-if generation.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-shell section-dataset" id="dataset">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="kicker">Dataset</p>
+          <h2>Large-scale football dataset with aligned event and tracking data</h2>
+          <p>
+            The dataset combines analyst-annotated event logs and full-pitch optical tracking, then standardizes them into
+            event-centric training examples with consistent spatial coordinates, temporal context, and future trajectory targets.
+          </p>
+        </div>
+
+        <div class="dataset-overview">
+          <article class="dataset-side-card reveal">
+            <div class="dataset-side-head">
+              <span class="dataset-side-kicker">League coverage</span>
+              <h3>1,432 matches across 2018-2025</h3>
+            </div>
+            <p>
+              The dataset spans multiple top-tier competitions, led by the EFL Championship and Premier League.
+            </p>
+            <div class="dataset-league-list" role="list" aria-label="League distribution">
+              <div class="dataset-league-row" role="listitem">
+                <span>EFL Championship</span>
+                <strong>829</strong>
+              </div>
+              <div class="dataset-league-row" role="listitem">
+                <span>Premier League</span>
+                <strong>489</strong>
+              </div>
+              <div class="dataset-league-row" role="listitem">
+                <span>MLS, Eredivisie, and others</span>
+                <strong>114</strong>
+              </div>
+            </div>
+          </article>
+
+          <article class="dataset-hero-card reveal">
+            <div class="dataset-hero-topline">
+              <span class="dataset-pill">Event data</span>
+              <span class="dataset-pill">Tracking data</span>
+              <span class="dataset-pill">Aligned sequences</span>
+            </div>
+            <h3>From raw match feeds to aligned multi-agent decision points</h3>
+            <p class="dataset-hero-copy">
+              Each sample starts from two synchronized sources: Opta-style play-by-play annotations for on-ball actions, and
+              optical tracking for the ball plus all players. An adapted Needleman-Wunsch alignment process links the two streams,
+              producing structured football events that can directly condition trajectory generation.
+            </p>
+            <div class="dataset-hero-band" aria-label="Dataset preprocessing summary">
+              <div>
+                <strong>25 Hz to 10 Hz</strong>
+                <span>tracking is down-sampled for stable sequence modeling</span>
+              </div>
+              <div>
+                <strong>105 x 68 m</strong>
+                <span>all positions are mapped onto one standardized pitch</span>
+              </div>
+              <div>
+                <strong>Attack to the right</strong>
+                <span>coordinates are flipped accordingly so tactical direction is consistent</span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="dataset-stat-grid">
+          <article class="dataset-stat-card reveal">
+            <span class="dataset-stat-label">Matches</span>
+            <strong>1,432</strong>
+            <p>Top-tier matches used to build the aligned dataset.</p>
+          </article>
+          <article class="dataset-stat-card reveal">
+            <span class="dataset-stat-label">Events</span>
+            <strong>3,374,599</strong>
+            <p>Annotated football events after alignment.</p>
+          </article>
+          <article class="dataset-stat-card reveal">
+            <span class="dataset-stat-label">Frames</span>
+            <strong>97,760,895</strong>
+            <p>Processed timesteps containing agent positions.</p>
+          </article>
+          <article class="dataset-stat-card reveal">
+            <span class="dataset-stat-label">Sequence Setup</span>
+            <strong>10 + 54</strong>
+            <p>10 context frames followed by 54 subsequent frames.</p>
+          </article>
+        </div>
+
+        <div class="dataset-detail-grid">
+          <article class="dataset-card reveal">
+            <div class="dataset-card-head">
+              <span class="dataset-card-tag">Data schema</span>
+              <h3>What one training example contains</h3>
+            </div>
+            <p class="dataset-card-lead">
+              Every event stores match metadata, tactical context, agent states, and the future trajectory target needed for training.
+            </p>
+            <div class="dataset-field-grid" aria-label="Event schema fields">
+              <article class="dataset-field-card">
+                <span class="dataset-field-index">01</span>
+                <h4>Metadata</h4>
+                <p>Game ID, event ID, episode ID, timestamps, and match bookkeeping.</p>
+              </article>
+              <article class="dataset-field-card">
+                <span class="dataset-field-index">02</span>
+                <h4>Match state</h4>
+                <p>Goal difference, possession length, event outcome, and ball-control status.</p>
+              </article>
+              <article class="dataset-field-card">
+                <span class="dataset-field-index">03</span>
+                <h4>Action labels</h4>
+                <p>30 unified action types plus the next-event ball destination.</p>
+              </article>
+              <article class="dataset-field-card">
+                <span class="dataset-field-index">04</span>
+                <h4>Team indicators</h4>
+                <p>Home vs. away, attacking vs. defending, and episode termination flags.</p>
+              </article>
+              <article class="dataset-field-card">
+                <span class="dataset-field-index">05</span>
+                <h4>Context tensors</h4>
+                <p>Past agent positions and features over the fixed context window.</p>
+              </article>
+              <article class="dataset-field-card">
+                <span class="dataset-field-index">06</span>
+                <h4>Trajectory tensors</h4>
+                <p>Variable-length future player trajectories with aligned agent features.</p>
+              </article>
+            </div>
+          </article>
+        </div>
+
+        <div class="dataset-reserve-grid">
+          <article class="dataset-reserve-card reveal">
+            <div class="dataset-reserve-head">
+              <span class="dataset-reserve-tag">Event Visualizer</span>
+              <h3>Explore the football event data distribution</h3>
+            </div>
+            <div class="dataset-tool-shell dataset-tool-shell-event" data-event-visualizer>
+              <div class="dataset-tool-toolbar">
+                <div class="dataset-toggle-group" role="group" aria-label="Event type filter">
+                  <button class="dataset-toggle-button is-active" type="button" data-event-filter="all">All</button>
+                  <button class="dataset-toggle-button" type="button" data-event-filter="attacking">Attacking</button>
+                  <button class="dataset-toggle-button" type="button" data-event-filter="defending">Defending</button>
+                  <button class="dataset-toggle-button" type="button" data-event-filter="neutral">Neutral</button>
+                </div>
+                <div class="dataset-toolbar-side">
+                  <div class="dataset-color-legend" aria-label="Event action color legend">
+                    <span class="dataset-color-legend-title">Event type:</span>
+                    <span class="dataset-color-legend-item">
+                      <span class="dataset-color-dot dataset-color-dot-attacking" aria-hidden="true"></span>
+                      <span>Attacking</span>
+                    </span>
+                    <span class="dataset-color-legend-item">
+                      <span class="dataset-color-dot dataset-color-dot-defending" aria-hidden="true"></span>
+                      <span>Defending</span>
+                    </span>
+                    <span class="dataset-color-legend-item">
+                      <span class="dataset-color-dot dataset-color-dot-neutral" aria-hidden="true"></span>
+                      <span>Neutral</span>
+                    </span>
+                  </div>
+                  <p class="dataset-toolbar-note">Bar heights are proportional to <code>log10(count + 1)</code>.</p>
+                </div>
+              </div>
+
+              <div class="dataset-tool-meta">
+                <label class="dataset-range-control" for="event-limit">
+                  <span>Visible actions</span>
+                  <input id="event-limit" type="range" min="1" max="30" step="1" value="10" data-event-limit>
+                  <strong data-event-limit-value>10</strong>
+                </label>
+              </div>
+
+              <div class="dataset-tool-body dataset-tool-body-event">
+                <div class="event-chart-shell">
+                  <div class="event-chart" data-event-chart></div>
+                </div>
+
+                <aside class="dataset-tool-inspector">
+                  <div class="dataset-inspector-block">
+                    <span class="dataset-inspector-label">Selected action</span>
+                    <h4 data-event-active-name>Pass</h4>
+                  </div>
+
+                  <div class="dataset-metric-list">
+                    <div class="dataset-metric-row">
+                      <span>Count</span>
+                      <strong data-event-active-count>1.40M</strong>
+                    </div>
+                    <div class="dataset-metric-row">
+                      <span>Dataset share</span>
+                      <strong data-event-active-share>41.6%</strong>
+                    </div>
+                    <div class="dataset-metric-row">
+                      <span>Cumulative coverage</span>
+                      <strong data-event-active-cum>41.6%</strong>
+                    </div>
+                    <div class="dataset-metric-row">
+                      <span>Action family</span>
+                      <strong data-event-active-type>Attacking</strong>
+                    </div>
+                  </div>
+
+                  <div class="dataset-summary-chips" data-event-type-summary></div>
+                </aside>
+              </div>
+            </div>
+          </article>
+
+          <article class="dataset-reserve-card reveal">
+            <div class="dataset-reserve-head">
+              <span class="dataset-reserve-tag">Trajectory Visualizer</span>
+              <h3>Inspect spatial density on the normalized pitch</h3>
+            </div>
+            <p>
+                The heatmap is built from 1,692,800 coordinates from a single game, while the overlay dots show a smaller sampled subset for readability.
+            </p>
+            <div class="dataset-tool-shell dataset-tool-shell-trajectory" data-trajectory-visualizer>
+              <div class="dataset-tool-toolbar">
+                <div class="dataset-toggle-group" role="group" aria-label="Trajectory view mode">
+                  <button class="dataset-toggle-button is-active" type="button" data-trajectory-mode="combined">Combined</button>
+                  <button class="dataset-toggle-button" type="button" data-trajectory-mode="density">Density</button>
+                  <button class="dataset-toggle-button" type="button" data-trajectory-mode="samples">Sampled points</button>
+                </div>
+                <div class="dataset-toggle-group" role="group" aria-label="Pitch zone filter">
+                  <button class="dataset-toggle-button is-active" type="button" data-trajectory-zone="all">All pitch</button>
+                  <button class="dataset-toggle-button" type="button" data-trajectory-zone="defensive">Def third</button>
+                  <button class="dataset-toggle-button" type="button" data-trajectory-zone="middle">Mid third</button>
+                  <button class="dataset-toggle-button" type="button" data-trajectory-zone="attacking">Att third</button>
+                </div>
+              </div>
+
+              <div class="dataset-tool-body dataset-tool-body-trajectory">
+                <div class="trajectory-stage-shell">
+                  <svg class="trajectory-pitch" viewBox="0 0 105 68" aria-label="Trajectory density pitch" data-trajectory-pitch></svg>
+                  <div class="trajectory-legend">
+                    <span>Low density</span>
+                    <div class="trajectory-legend-ramp" aria-hidden="true"></div>
+                    <span>High density</span>
+                  </div>
+                </div>
+
+                <aside class="dataset-tool-inspector">
+                  <div class="dataset-inspector-block">
+                    <span class="dataset-inspector-label">Focused zone</span>
+                    <h4 data-trajectory-active-name>Right half-space hotspot</h4>
+                    <p data-trajectory-active-copy>One of the strongest concentrations appears in the attacking half, close to the right channel.</p>
+                  </div>
+
+                  <div class="dataset-metric-list">
+                    <div class="dataset-metric-row">
+                      <span>Bin count</span>
+                      <strong data-trajectory-active-count>40,976</strong>
+                    </div>
+                    <div class="dataset-metric-row">
+                      <span>Pitch center</span>
+                      <strong data-trajectory-active-center>(94.5, 30.6)</strong>
+                    </div>
+                    <div class="dataset-metric-row">
+                      <span>Pitch third</span>
+                      <strong data-trajectory-active-third>Attacking third</strong>
+                    </div>
+                    <div class="dataset-metric-row">
+                      <span>Vertical lane</span>
+                      <strong data-trajectory-active-lane>Central lane</strong>
+                    </div>
+                  </div>
+
+                </aside>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-shell section-alt" id="results">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="kicker">Results</p>
+          <h2>Accurate, adaptable, and scalable</h2>
+          <p>
+            On the paper's large-scale football dataset, TacticGen improves prediction quality over prior baselines and then uses the same
+            modeling foundation to support controllable tactical generation.
+          </p>
+        </div>
+
+        <div class="stat-grid">
+          <article class="stat-card reveal">
+            <span class="stat-label">Trajectory Error</span>
+            <strong>0.29</strong>
+            <span class="stat-caption">Best ADE reported for TacticGen</span>
+          </article>
+          <article class="stat-card reveal">
+            <span class="stat-label">Final Position</span>
+            <strong>0.52</strong>
+            <span class="stat-caption">Best FDE reported for TacticGen</span>
+          </article>
+          <article class="stat-card reveal">
+            <span class="stat-label">Joint Accuracy</span>
+            <strong>0.92</strong>
+            <span class="stat-caption">Best joint FDE in the comparison table</span>
+          </article>
+          <article class="stat-card reveal">
+            <span class="stat-label">Miss Rate</span>
+            <strong>10.66%</strong>
+            <span class="stat-caption">Best joint miss rate in the comparison table</span>
+          </article>
+        </div>
+
+        <div class="result-columns">
+          <div class="result-copy reveal scaling-copy">
+            <span class="result-eyebrow">Scaling</span>
+            <h3>Scaling behavior</h3>
+            <p class="result-lead">
+              From <strong>1.74M</strong> to <strong>311.50M</strong> parameters, up to <strong>600K</strong> training steps, and up to
+              <strong>78M</strong> training examples, TacticGen shows consistent scaling gains across model size, training time, and
+              data scale.
+            </p>
+            <figure class="scaling-figure">
+              <img
+                src="static/images/tacticgen/scaling_performance.png"
+                alt="Scaling curves showing Joint ADE and Joint FDE improving with more training steps across model sizes from S to XXL.">
+            </figure>
+            <div class="result-points">
+              <article class="result-point">
+                <strong>Model Scale</strong>
+                <span>Scaling from <strong>1.74M</strong> to <strong>311.50M</strong> parameters consistently lowers error.</span>
+              </article>
+              <article class="result-point">
+                <strong>Data Scale</strong>
+                <span>Performance continues to improve as data grows, up to full <strong>78M</strong> examples.</span>
+              </article>
+            </div>
+          </div>
+
+          <div class="result-copy reveal human-copy">
+            <span class="result-eyebrow">Human Study</span>
+            <h3>Expert validation</h3>
+            <p class="result-lead">
+              In case studies with five experts, generated trajectories achieved a realism F1 of <strong>0.50 &plusmn; 0.07</strong>, and guided
+              TacticGen samples received a utility score of <strong>0.81 &plusmn; 0.04</strong>.
+            </p>
+            <figure class="human-figure">
+              <img
+                src="static/images/tacticgen/case_study.png"
+                alt="Case study plots showing expert utility ratings concentrated near high scores and rating distributions across five raters.">
+            </figure>
+            <div class="result-points">
+              <article class="result-point">
+                <strong>Realism</strong>
+                <span>Experts achieved an average realism classification F1 of <strong>0.50 &plusmn; 0.07</strong>.</span>
+              </article>
+              <article class="result-point">
+                <strong>Preference</strong>
+                <span>Guided TacticGen was preferred over ground truth in <strong>20 of 25 pairs</strong>.</span>
+              </article>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section-shell section-dark" id="videos">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="kicker">Videos</p>
+          <h2>Main Paper Videos</h2>
+          <p>
+            These clips show how TacticGen compares with real trajectories and how generation changes under different tactical objectives,
+            including rule guidance, pitch-control guidance, language prompts, and value-based guidance.
+          </p>
+        </div>
+
+        <article class="event-intro-card reveal">
+          <div class="event-intro-copy">
+            <span class="video-ref">Ground-Truth Event</span>
+            <h3>Start With the Reference Play</h3>
+            <p>
+              All videos below are based on the <strong>same Pass event</strong>. The interactive view here shows the
+              <strong>ground-truth play first</strong>, so viewers can get familiar with the <strong>player layout</strong>,
+              <strong>ball location</strong>, and <strong>overall structure</strong> before comparing generated tactics.
+            </p>
+            <p>
+              <strong class="inline-red">Red</strong> markers indicate the attacking team, <strong class="inline-blue">blue</strong> markers
+              indicate the defending team, and <strong class="inline-green">green</strong> indicates the ball.
+            </p>
+          </div>
+          <div class="event-frame-shell">
+            <iframe
+              class="event-frame"
+              src="static/videos/sample_event.html"
+              title="Ground-truth sample event"
+              loading="lazy"></iframe>
+          </div>
+        </article>
+
+        <div class="video-grid">
+          <figure class="video-card reveal">
+            <video class="video-player" controls preload="none" playsinline>
+              <source src="static/videos/Movie%203(f).mp4" type="video/mp4">
+            </video>
+            <figcaption class="video-meta">
+              <span class="video-ref">Conditional Prediction</span>
+              <h3>TacticGen-C Prediction</h3>
+              <p>This clip shows conditional trajectory prediction for a pass event, where player movement is generated while following the
+                observed ball trajectory.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="video-card reveal">
+            <video class="video-player" controls preload="none" playsinline>
+              <source src="static/videos/Movie%205(b).mp4" type="video/mp4">
+            </video>
+            <figcaption class="video-meta">
+              <span class="video-ref">Rule Guidance</span>
+              <h3>Attacking Rule Guidance</h3>
+              <p>The attacking team is guided by composed tactical rules: support the ball carrier, maintain width, create passing angles,
+                and occupy Zone 14.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="video-card reveal">
+            <video class="video-player" controls preload="none" playsinline>
+              <source src="static/videos/Movie%205(c).mp4" type="video/mp4">
+            </video>
+            <figcaption class="video-meta">
+              <span class="video-ref">Rule Guidance</span>
+              <h3>Defending Rule Guidance</h3>
+              <p>The defending team is guided to press the ball carrier, collapse toward the ball, deepen the block, and reduce passing
+                lanes.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="video-card reveal">
+            <video class="video-player" controls preload="none" playsinline>
+              <source src="static/videos/Movie%206(a)%20bottom.mp4" type="video/mp4">
+            </video>
+            <figcaption class="video-meta">
+              <span class="video-ref">Pitch Control Map</span>
+              <h3>Ground-Truth PCV</h3>
+              <p>This is the reference pitch-control map at the final frame, showing the baseline spatial dominance before any PCV guidance
+                is applied.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="video-card reveal">
+            <video class="video-player" controls preload="none" playsinline>
+              <source src="static/videos/Movie%206(b)%20top.mp4" type="video/mp4">
+            </video>
+            <figcaption class="video-meta">
+              <span class="video-ref">Pitch Control Guidance</span>
+              <h3>Attack High PCV Trajectory</h3>
+              <p>This trajectory view shows pitch-control guidance for the attacking team, encouraging runners to move forward and create
+                more attacking space.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="video-card reveal">
+            <video class="video-player" controls preload="none" playsinline>
+              <source src="static/videos/Movie%206(b)%20bottom.mp4" type="video/mp4">
+            </video>
+            <figcaption class="video-meta">
+              <span class="video-ref">Pitch Control Map</span>
+              <h3>Attack High PCV Map</h3>
+              <p>This final-frame pitch-control map shows how attacking control expands into more dangerous offensive areas under PCV
+                guidance.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="video-card reveal">
+            <video class="video-player" controls preload="none" playsinline>
+              <source src="static/videos/Movie%206(c)%20top.mp4" type="video/mp4">
+            </video>
+            <figcaption class="video-meta">
+              <span class="video-ref">Pitch Control Guidance</span>
+              <h3>Defense High PCV Trajectory</h3>
+              <p>This trajectory view shows PCV guidance for the defending team, increasing pressure on the carrier and improving central
+                coverage.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="video-card reveal">
+            <video class="video-player" controls preload="none" playsinline>
+              <source src="static/videos/Movie%206(c)%20bottom.mp4" type="video/mp4">
+            </video>
+            <figcaption class="video-meta">
+              <span class="video-ref">Pitch Control Map</span>
+              <h3>Defense High PCV Map</h3>
+              <p>This final-frame pitch-control map highlights stronger defensive coverage, with the defending side reclaiming more key
+                space.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="video-card reveal">
+            <video class="video-player" controls preload="none" playsinline>
+              <source src="static/videos/Movie%207%20middle.mp4" type="video/mp4">
+            </video>
+            <figcaption class="video-meta">
+              <span class="video-ref">Language Prompt</span>
+              <h3>LLM Prompt: Move Forward</h3>
+              <p>Prompt: "Make the attacking team move forward more aggressively." The generated players respond by pushing forward faster
+                toward the defending goal.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="video-card reveal">
+            <video class="video-player" controls preload="none" playsinline>
+              <source src="static/videos/Movie%207%20right.mp4" type="video/mp4">
+            </video>
+            <figcaption class="video-meta">
+              <span class="video-ref">Language Prompt</span>
+              <h3>LLM Prompt: Stretch the Defense</h3>
+              <p>Prompt: "Make the right winger drift into the corner to stretch the defense and open up more space." The right winger
+                follows the instruction by moving wide.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="video-card reveal">
+            <video class="video-player" controls preload="none" playsinline>
+              <source src="static/videos/Movie%209(b).mp4" type="video/mp4">
+            </video>
+            <figcaption class="video-meta">
+              <span class="video-ref">Value Guidance</span>
+              <h3>Attack High Value</h3>
+              <p>The attacking side is guided by a learned value model, leading players to push higher and closer to goal-scoring areas.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="video-card reveal">
+            <video class="video-player" controls preload="none" playsinline>
+              <source src="static/videos/Movie%209(c).mp4" type="video/mp4">
+            </video>
+            <figcaption class="video-meta">
+              <span class="video-ref">Value Guidance</span>
+              <h3>Defense High Value</h3>
+              <p>The defending side is guided by the value model to reduce attacking payoff, producing faster pressure on the ball carrier.</p>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-shell section-soft" id="evaluation">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="kicker">Human Evaluation</p>
+          <h2>Interactive Expert Evaluation</h2>
+          <p>
+            We study TacticGen with two complementary human-facing tasks: a <strong>Realism Test</strong> that asks whether a clip
+            looks generated or realistic, and a <strong>Utility Preference</strong> task that asks which clip demonstrates better
+            tactical value. The clips and pairs shown on this webpage are <strong>only showcase examples</strong>, not the full
+            set of human evaluation samples.
+          </p>
+        </div>
+
+        <div class="evaluation-subsection reveal" id="realism-quiz">
+          <div class="evaluation-subsection-head">
+          <p class="kicker">Realism Test</p>
+          <h2>Can You Tell Generated Plays From Real Ones?</h2>
+          <p>
+            We added 10 expert case-study clips on realism. Watch each play, decide whether it looks <strong>generated</strong> or
+            <strong>realistic</strong>, and the interface will reveal the correct answer immediately after your choice.
+          </p>
+          <button class="realism-overview-trigger" type="button" data-realism-overview-open>
+            <span class="realism-overview-eyebrow">Task Overview</span>
+            <strong>Read the full annotation instructions before judging the clips.</strong>
+            <span class="realism-overview-hint">Tap to open the study overview, rules, and annotation notes.</span>
+          </button>
+        </div>
+
+        <article class="realism-quiz-shell reveal" aria-label="Blind realism quiz">
+          <div class="realism-quiz-head">
+            <div class="realism-task-banner">
+              <span class="realism-task-label">Single Task Across All 10 Clips</span>
+              <h3>Are the post-event player movements generated or realistic?</h3>
+              <p>Judge only the post-event player trajectories. The ball trajectory is always real. Use the buttons or swipe horizontally to move through the clips.</p>
+            </div>
+          </div>
+
+          <div class="realism-carousel" id="realism-carousel">
+            <article class="realism-card" data-answer="realistic">
+              <div class="realism-card-media">
+                <video class="video-player realism-video" controls preload="none" playsinline>
+                  <source src="static/videos/realism/gt/Clearance_986553_1676393_54/GroundTruth.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="realism-card-copy">
+                <div class="realism-card-panel">
+                  <div class="realism-quiz-controls" aria-label="Quiz navigation">
+                    <strong class="realism-quiz-progress">Clip <span data-realism-current>1</span> / 10</strong>
+                    <div class="realism-nav-buttons">
+                      <button class="realism-nav-button" type="button" data-realism-nav="prev">Previous</button>
+                      <button class="realism-nav-button" type="button" data-realism-nav="next">Next</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="realism-card-topline">
+                  <span class="realism-card-tag">Clip 01</span>
+                  <span class="realism-card-meta">Clearance</span>
+                </div>
+                <p class="realism-card-prompt">Select your answer</p>
+                <div class="realism-answer-row" role="group" aria-label="Clip 1 answer choices">
+                  <button class="realism-answer-button" type="button" data-choice="generated">Generated</button>
+                  <button class="realism-answer-button" type="button" data-choice="realistic">Realistic</button>
+                </div>
+                <p class="realism-feedback" hidden aria-live="polite"></p>
+              </div>
+            </article>
+
+            <article class="realism-card" data-answer="generated">
+              <div class="realism-card-media">
+                <video class="video-player realism-video" controls preload="none" playsinline>
+                  <source src="static/videos/realism/generated/Pass_986531_1929915_51/generated.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="realism-card-copy">
+                <div class="realism-card-panel">
+                  <div class="realism-quiz-controls" aria-label="Quiz navigation">
+                    <strong class="realism-quiz-progress">Clip <span data-realism-current>2</span> / 10</strong>
+                    <div class="realism-nav-buttons">
+                      <button class="realism-nav-button" type="button" data-realism-nav="prev">Previous</button>
+                      <button class="realism-nav-button" type="button" data-realism-nav="next">Next</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="realism-card-topline">
+                  <span class="realism-card-tag">Clip 02</span>
+                  <span class="realism-card-meta">Pass</span>
+                </div>
+                <p class="realism-card-prompt">Select your answer</p>
+                <div class="realism-answer-row" role="group" aria-label="Clip 2 answer choices">
+                  <button class="realism-answer-button" type="button" data-choice="generated">Generated</button>
+                  <button class="realism-answer-button" type="button" data-choice="realistic">Realistic</button>
+                </div>
+                <p class="realism-feedback" hidden aria-live="polite"></p>
+              </div>
+            </article>
+
+            <article class="realism-card" data-answer="realistic">
+              <div class="realism-card-media">
+                <video class="video-player realism-video" controls preload="none" playsinline>
+                  <source src="static/videos/realism/gt/Interception_2123892_55321_46/GroundTruth.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="realism-card-copy">
+                <div class="realism-card-panel">
+                  <div class="realism-quiz-controls" aria-label="Quiz navigation">
+                    <strong class="realism-quiz-progress">Clip <span data-realism-current>3</span> / 10</strong>
+                    <div class="realism-nav-buttons">
+                      <button class="realism-nav-button" type="button" data-realism-nav="prev">Previous</button>
+                      <button class="realism-nav-button" type="button" data-realism-nav="next">Next</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="realism-card-topline">
+                  <span class="realism-card-tag">Clip 03</span>
+                  <span class="realism-card-meta">Interception</span>
+                </div>
+                <p class="realism-card-prompt">Select your answer</p>
+                <div class="realism-answer-row" role="group" aria-label="Clip 3 answer choices">
+                  <button class="realism-answer-button" type="button" data-choice="generated">Generated</button>
+                  <button class="realism-answer-button" type="button" data-choice="realistic">Realistic</button>
+                </div>
+                <p class="realism-feedback" hidden aria-live="polite"></p>
+              </div>
+            </article>
+
+            <article class="realism-card" data-answer="generated">
+              <div class="realism-card-media">
+                <video class="video-player realism-video" controls preload="none" playsinline>
+                  <source src="static/videos/realism/generated/Take%20On_1059794_42061_41/generated.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="realism-card-copy">
+                <div class="realism-card-panel">
+                  <div class="realism-quiz-controls" aria-label="Quiz navigation">
+                    <strong class="realism-quiz-progress">Clip <span data-realism-current>4</span> / 10</strong>
+                    <div class="realism-nav-buttons">
+                      <button class="realism-nav-button" type="button" data-realism-nav="prev">Previous</button>
+                      <button class="realism-nav-button" type="button" data-realism-nav="next">Next</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="realism-card-topline">
+                  <span class="realism-card-tag">Clip 04</span>
+                  <span class="realism-card-meta">Take On</span>
+                </div>
+                <p class="realism-card-prompt">Select your answer</p>
+                <div class="realism-answer-row" role="group" aria-label="Clip 4 answer choices">
+                  <button class="realism-answer-button" type="button" data-choice="generated">Generated</button>
+                  <button class="realism-answer-button" type="button" data-choice="realistic">Realistic</button>
+                </div>
+                <p class="realism-feedback" hidden aria-live="polite"></p>
+              </div>
+            </article>
+
+            <article class="realism-card" data-answer="generated">
+              <div class="realism-card-media">
+                <video class="video-player realism-video" controls preload="none" playsinline>
+                  <source src="static/videos/realism/generated/Clearance_1059731_105771_64/generated.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="realism-card-copy">
+                <div class="realism-card-panel">
+                  <div class="realism-quiz-controls" aria-label="Quiz navigation">
+                    <strong class="realism-quiz-progress">Clip <span data-realism-current>5</span> / 10</strong>
+                    <div class="realism-nav-buttons">
+                      <button class="realism-nav-button" type="button" data-realism-nav="prev">Previous</button>
+                      <button class="realism-nav-button" type="button" data-realism-nav="next">Next</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="realism-card-topline">
+                  <span class="realism-card-tag">Clip 05</span>
+                  <span class="realism-card-meta">Clearance</span>
+                </div>
+                <p class="realism-card-prompt">Select your answer</p>
+                <div class="realism-answer-row" role="group" aria-label="Clip 5 answer choices">
+                  <button class="realism-answer-button" type="button" data-choice="generated">Generated</button>
+                  <button class="realism-answer-button" type="button" data-choice="realistic">Realistic</button>
+                </div>
+                <p class="realism-feedback" hidden aria-live="polite"></p>
+              </div>
+            </article>
+
+            <article class="realism-card" data-answer="realistic">
+              <div class="realism-card-media">
+                <video class="video-player realism-video" controls preload="none" playsinline>
+                  <source src="static/videos/realism/gt/Save_2128342_107143_48/GroundTruth.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="realism-card-copy">
+                <div class="realism-card-panel">
+                  <div class="realism-quiz-controls" aria-label="Quiz navigation">
+                    <strong class="realism-quiz-progress">Clip <span data-realism-current>6</span> / 10</strong>
+                    <div class="realism-nav-buttons">
+                      <button class="realism-nav-button" type="button" data-realism-nav="prev">Previous</button>
+                      <button class="realism-nav-button" type="button" data-realism-nav="next">Next</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="realism-card-topline">
+                  <span class="realism-card-tag">Clip 06</span>
+                  <span class="realism-card-meta">Save</span>
+                </div>
+                <p class="realism-card-prompt">Select your answer</p>
+                <div class="realism-answer-row" role="group" aria-label="Clip 6 answer choices">
+                  <button class="realism-answer-button" type="button" data-choice="generated">Generated</button>
+                  <button class="realism-answer-button" type="button" data-choice="realistic">Realistic</button>
+                </div>
+                <p class="realism-feedback" hidden aria-live="polite"></p>
+              </div>
+            </article>
+
+            <article class="realism-card" data-answer="generated">
+              <div class="realism-card-media">
+                <video class="video-player realism-video" controls preload="none" playsinline>
+                  <source src="static/videos/realism/generated/Ball%20touch_2128347_12916_49/generated.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="realism-card-copy">
+                <div class="realism-card-panel">
+                  <div class="realism-quiz-controls" aria-label="Quiz navigation">
+                    <strong class="realism-quiz-progress">Clip <span data-realism-current>7</span> / 10</strong>
+                    <div class="realism-nav-buttons">
+                      <button class="realism-nav-button" type="button" data-realism-nav="prev">Previous</button>
+                      <button class="realism-nav-button" type="button" data-realism-nav="next">Next</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="realism-card-topline">
+                  <span class="realism-card-tag">Clip 07</span>
+                  <span class="realism-card-meta">Ball Touch</span>
+                </div>
+                <p class="realism-card-prompt">Select your answer</p>
+                <div class="realism-answer-row" role="group" aria-label="Clip 7 answer choices">
+                  <button class="realism-answer-button" type="button" data-choice="generated">Generated</button>
+                  <button class="realism-answer-button" type="button" data-choice="realistic">Realistic</button>
+                </div>
+                <p class="realism-feedback" hidden aria-live="polite"></p>
+              </div>
+            </article>
+
+            <article class="realism-card" data-answer="realistic">
+              <div class="realism-card-media">
+                <video class="video-player realism-video" controls preload="none" playsinline>
+                  <source src="static/videos/realism/gt/Pass_986540_1816450_63/GroundTruth.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="realism-card-copy">
+                <div class="realism-card-panel">
+                  <div class="realism-quiz-controls" aria-label="Quiz navigation">
+                    <strong class="realism-quiz-progress">Clip <span data-realism-current>8</span> / 10</strong>
+                    <div class="realism-nav-buttons">
+                      <button class="realism-nav-button" type="button" data-realism-nav="prev">Previous</button>
+                      <button class="realism-nav-button" type="button" data-realism-nav="next">Next</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="realism-card-topline">
+                  <span class="realism-card-tag">Clip 08</span>
+                  <span class="realism-card-meta">Pass</span>
+                </div>
+                <p class="realism-card-prompt">Select your answer</p>
+                <div class="realism-answer-row" role="group" aria-label="Clip 8 answer choices">
+                  <button class="realism-answer-button" type="button" data-choice="generated">Generated</button>
+                  <button class="realism-answer-button" type="button" data-choice="realistic">Realistic</button>
+                </div>
+                <p class="realism-feedback" hidden aria-live="polite"></p>
+              </div>
+            </article>
+
+            <article class="realism-card" data-answer="generated">
+              <div class="realism-card-media">
+                <video class="video-player realism-video" controls preload="none" playsinline>
+                  <source src="static/videos/realism/generated/Pass_986528_1949879_55/generated.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="realism-card-copy">
+                <div class="realism-card-panel">
+                  <div class="realism-quiz-controls" aria-label="Quiz navigation">
+                    <strong class="realism-quiz-progress">Clip <span data-realism-current>9</span> / 10</strong>
+                    <div class="realism-nav-buttons">
+                      <button class="realism-nav-button" type="button" data-realism-nav="prev">Previous</button>
+                      <button class="realism-nav-button" type="button" data-realism-nav="next">Next</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="realism-card-topline">
+                  <span class="realism-card-tag">Clip 09</span>
+                  <span class="realism-card-meta">Pass</span>
+                </div>
+                <p class="realism-card-prompt">Select your answer</p>
+                <div class="realism-answer-row" role="group" aria-label="Clip 9 answer choices">
+                  <button class="realism-answer-button" type="button" data-choice="generated">Generated</button>
+                  <button class="realism-answer-button" type="button" data-choice="realistic">Realistic</button>
+                </div>
+                <p class="realism-feedback" hidden aria-live="polite"></p>
+              </div>
+            </article>
+
+            <article class="realism-card" data-answer="realistic">
+              <div class="realism-card-media">
+                <video class="video-player realism-video" controls preload="none" playsinline>
+                  <source src="static/videos/realism/gt/Pass_986528_1956069_44/GroundTruth.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="realism-card-copy">
+                <div class="realism-card-panel">
+                  <div class="realism-quiz-controls" aria-label="Quiz navigation">
+                    <strong class="realism-quiz-progress">Clip <span data-realism-current>10</span> / 10</strong>
+                    <div class="realism-nav-buttons">
+                      <button class="realism-nav-button" type="button" data-realism-nav="prev">Previous</button>
+                      <button class="realism-nav-button" type="button" data-realism-nav="next">Next</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="realism-card-topline">
+                  <span class="realism-card-tag">Clip 10</span>
+                  <span class="realism-card-meta">Pass</span>
+                </div>
+                <p class="realism-card-prompt">Select your answer</p>
+                <div class="realism-answer-row" role="group" aria-label="Clip 10 answer choices">
+                  <button class="realism-answer-button" type="button" data-choice="generated">Generated</button>
+                  <button class="realism-answer-button" type="button" data-choice="realistic">Realistic</button>
+                </div>
+                <p class="realism-feedback" hidden aria-live="polite"></p>
+              </div>
+            </article>
+          </div>
+        </article>
+        </div>
+
+    <div class="realism-overview-modal" id="realism-overview-modal" hidden>
+      <div class="realism-overview-backdrop" data-realism-overview-close></div>
+      <div class="realism-overview-panel" role="dialog" aria-modal="true" aria-labelledby="realism-overview-title">
+        <button class="realism-overview-close" type="button" aria-label="Close task overview" data-realism-overview-close>&times;</button>
+        <div class="realism-overview-copy">
+          <p class="kicker">Realism Test</p>
+          <h2 id="realism-overview-title">Task Overview</h2>
+          <p>You will watch a set of short football videos. Each video follows the same pattern:</p>
+
+          <ol>
+            <li><strong>Event context (10 frames)</strong> - real tracking data showing the ball and all 22 players' x / y positions for the 10 frames immediately before the on-ball event (pass, clearance, ball-touch, etc.).</li>
+            <li><strong>Post-event segment (N frames)</strong> - after the event occurs, the video continues tracking the ball and all players until one of the following: the next on-ball action occurs, the tracking data ends, or the 64-frame limit is reached. The ball trajectory is always authentic; the 22 player trajectories may come from real tracking data or from AI-generated predictions.</li>
+            <li><strong>Freeze frame</strong> - the final frame is held for ~3 s to let you inspect the ending.</li>
+          </ol>
+
+          <h3>Additional Notes</h3>
+          <ul>
+            <li>The attacking team always moves <strong>left to right</strong>.</li>
+            <li><strong>Sampling rate:</strong> player tracking is captured at 10 Hz, and videos are rendered at 5 fps, so 1 s of video equals 0.5 s of real-world play.</li>
+            <li>The <strong>ball trajectory is always real</strong>; only the post-event segment of 22 players may be synthetic.</li>
+            <li>This webpage contains <strong>10 expert case-study clips</strong>: <strong>5 generated</strong> and <strong>5 realistic</strong>. They are presented here as a fixed curated set rather than a randomized annotation batch.</li>
+            <li>For each clip, the post-event player movements are always <strong>entirely realistic</strong> or <strong>entirely generated</strong>, without mixing the two.</li>
+            <li>We provide five realistic clips to get you familiar with the animations here: <a href="https://drive.google.com/drive/folders/1FcY1BzPMbLIGb7k98dztplyQBjm_YhSZ?usp=sharing" target="_blank" rel="noopener noreferrer">Google Drive Folder</a>.</li>
+          </ul>
+
+          <h3>Your Task</h3>
+          <p>For each video, decide whether the post-event player movements look <strong>realistic</strong> (authentic) or <strong>generated</strong> (AI-predicted). Keep in mind that the <strong>ball trajectory is always realistic</strong>.</p>
+
+          <h3>PS</h3>
+          <ul>
+            <li>You may submit your responses after completing at least one video. Clicking the Submit button will record all of your already selected answers to the server at once. For convenience, you might choose to submit your responses every 5 or 10 events.</li>
+            <li>If you'd like to take a break and continue later, you're also welcome to temporarily submit your progress. For example, if you complete and submit feedback for the first 10 videos, you can return later and resume directly from page 11.</li>
+            <li>When clicking the submit button, it will require you to provide some simple feedback during your annotation progress.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+        <div class="evaluation-subsection reveal" id="utility-quiz">
+          <div class="evaluation-subsection-head">
+          <p class="kicker">Utility Preference</p>
+          <h2>Which Clip Shows Better Tactical Utility?</h2>
+          <p>
+            These expert case studies compare a <strong>Generated</strong> clip against a <strong>Realistic</strong> clip. For each pair,
+            decide whether the <strong>left</strong> clip, the <strong>right</strong> clip, or <strong>equal</strong> shows better utility.
+          </p>
+          <button class="realism-overview-trigger" type="button" data-utility-overview-open>
+            <span class="realism-overview-eyebrow">Task Overview</span>
+            <strong>Read the full utility preference instructions before comparing the pairs.</strong>
+            <span class="realism-overview-hint">Tap to open the overview, notes, and expert preference task guidance.</span>
+          </button>
+        </div>
+
+        <article class="utility-quiz-shell reveal" aria-label="Utility preference quiz">
+          <div class="utility-quiz-head">
+            <div class="realism-task-banner utility-task-banner">
+              <span class="realism-task-label">Single Task Across All 6 Pairs</span>
+              <h3>Which side demonstrates better tactical utility?</h3>
+              <p>Judge utility for the highlighted team only. Realism should be a least consideration. You can choose Left, Right, or Equal, then compare your choice with the experts.</p>
+            </div>
+          </div>
+
+          <div class="utility-carousel" id="utility-carousel">
+            <article class="utility-card" data-left-type="generated" data-right-type="realistic" data-expert-generated="5" data-expert-realistic="0" data-expert-equal="0" data-expert-majority="generated">
+              <div class="utility-card-media">
+                <div class="utility-video-grid">
+                  <figure class="utility-video-panel">
+                    <span class="utility-side-tag">Left Clip</span>
+                    <video class="video-player utility-video" controls preload="none" playsinline>
+                      <source src="static/videos/utility/guided_att/Pass_2367635_58331/Generated.mp4" type="video/mp4">
+                    </video>
+                  </figure>
+                  <figure class="utility-video-panel">
+                    <span class="utility-side-tag">Right Clip</span>
+                    <video class="video-player utility-video" controls preload="none" playsinline>
+                      <source src="static/videos/utility/guided_att/Pass_2367635_58331/GroundTruth.mp4" type="video/mp4">
+                    </video>
+                  </figure>
+                </div>
+              </div>
+              <div class="utility-card-copy">
+                <div class="utility-card-panel">
+                  <div class="utility-quiz-controls" aria-label="Utility quiz navigation">
+                    <strong class="utility-quiz-progress">Pair <span data-utility-current>1</span> / 6</strong>
+                    <div class="utility-nav-buttons">
+                      <button class="utility-nav-button" type="button" data-utility-nav="prev">Previous</button>
+                      <button class="utility-nav-button" type="button" data-utility-nav="next">Next</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="utility-card-topline">
+                  <span class="utility-card-tag">Pair 01</span>
+                  <span class="utility-card-meta utility-card-meta-att">Attacking Team</span>
+                  <span class="utility-card-event">Pass_2367635_58331</span>
+                </div>
+                <p class="utility-card-prompt">Which clip looks better for the <span class="utility-prompt-team utility-prompt-team-att">attacking team</span>?</p>
+                <div class="utility-answer-row" role="group" aria-label="Pair 1 answer choices">
+                  <button class="utility-answer-button" type="button" data-choice="left">Left clip</button>
+                  <button class="utility-answer-button" type="button" data-choice="equal">Equal</button>
+                  <button class="utility-answer-button" type="button" data-choice="right">Right clip</button>
+                </div>
+                <div class="utility-feedback" hidden aria-live="polite"></div>
+              </div>
+            </article>
+
+            <article class="utility-card" data-left-type="realistic" data-right-type="generated" data-expert-generated="5" data-expert-realistic="0" data-expert-equal="0" data-expert-majority="generated">
+              <div class="utility-card-media">
+                <div class="utility-video-grid">
+                  <figure class="utility-video-panel">
+                    <span class="utility-side-tag">Left Clip</span>
+                    <video class="video-player utility-video" controls preload="none" playsinline>
+                      <source src="static/videos/utility/guided_att/Pass_2370870_101489/GroundTruth.mp4" type="video/mp4">
+                    </video>
+                  </figure>
+                  <figure class="utility-video-panel">
+                    <span class="utility-side-tag">Right Clip</span>
+                    <video class="video-player utility-video" controls preload="none" playsinline>
+                      <source src="static/videos/utility/guided_att/Pass_2370870_101489/Generated.mp4" type="video/mp4">
+                    </video>
+                  </figure>
+                </div>
+              </div>
+              <div class="utility-card-copy">
+                <div class="utility-card-panel">
+                  <div class="utility-quiz-controls" aria-label="Utility quiz navigation">
+                    <strong class="utility-quiz-progress">Pair <span data-utility-current>2</span> / 6</strong>
+                    <div class="utility-nav-buttons">
+                      <button class="utility-nav-button" type="button" data-utility-nav="prev">Previous</button>
+                      <button class="utility-nav-button" type="button" data-utility-nav="next">Next</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="utility-card-topline">
+                  <span class="utility-card-tag">Pair 02</span>
+                  <span class="utility-card-meta utility-card-meta-att">Attacking Team</span>
+                  <span class="utility-card-event">Pass_2370870_101489</span>
+                </div>
+                <p class="utility-card-prompt">Which clip looks better for the <span class="utility-prompt-team utility-prompt-team-att">attacking team</span>?</p>
+                <div class="utility-answer-row" role="group" aria-label="Pair 2 answer choices">
+                  <button class="utility-answer-button" type="button" data-choice="left">Left clip</button>
+                  <button class="utility-answer-button" type="button" data-choice="equal">Equal</button>
+                  <button class="utility-answer-button" type="button" data-choice="right">Right clip</button>
+                </div>
+                <div class="utility-feedback" hidden aria-live="polite"></div>
+              </div>
+            </article>
+
+            <article class="utility-card" data-left-type="generated" data-right-type="realistic" data-expert-generated="4" data-expert-realistic="1" data-expert-equal="0" data-expert-majority="generated">
+              <div class="utility-card-media">
+                <div class="utility-video-grid">
+                  <figure class="utility-video-panel">
+                    <span class="utility-side-tag">Left Clip</span>
+                    <video class="video-player utility-video" controls preload="none" playsinline>
+                      <source src="static/videos/utility/guided_att/Pass_2450488_130479/Generated.mp4" type="video/mp4">
+                    </video>
+                  </figure>
+                  <figure class="utility-video-panel">
+                    <span class="utility-side-tag">Right Clip</span>
+                    <video class="video-player utility-video" controls preload="none" playsinline>
+                      <source src="static/videos/utility/guided_att/Pass_2450488_130479/GroundTruth.mp4" type="video/mp4">
+                    </video>
+                  </figure>
+                </div>
+              </div>
+              <div class="utility-card-copy">
+                <div class="utility-card-panel">
+                  <div class="utility-quiz-controls" aria-label="Utility quiz navigation">
+                    <strong class="utility-quiz-progress">Pair <span data-utility-current>3</span> / 6</strong>
+                    <div class="utility-nav-buttons">
+                      <button class="utility-nav-button" type="button" data-utility-nav="prev">Previous</button>
+                      <button class="utility-nav-button" type="button" data-utility-nav="next">Next</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="utility-card-topline">
+                  <span class="utility-card-tag">Pair 03</span>
+                  <span class="utility-card-meta utility-card-meta-att">Attacking Team</span>
+                  <span class="utility-card-event">Pass_2450488_130479</span>
+                </div>
+                <p class="utility-card-prompt">Which clip looks better for the <span class="utility-prompt-team utility-prompt-team-att">attacking team</span>?</p>
+                <div class="utility-answer-row" role="group" aria-label="Pair 3 answer choices">
+                  <button class="utility-answer-button" type="button" data-choice="left">Left clip</button>
+                  <button class="utility-answer-button" type="button" data-choice="equal">Equal</button>
+                  <button class="utility-answer-button" type="button" data-choice="right">Right clip</button>
+                </div>
+                <div class="utility-feedback" hidden aria-live="polite"></div>
+              </div>
+            </article>
+
+            <article class="utility-card" data-left-type="realistic" data-right-type="generated" data-expert-generated="5" data-expert-realistic="0" data-expert-equal="0" data-expert-majority="generated">
+              <div class="utility-card-media">
+                <div class="utility-video-grid">
+                  <figure class="utility-video-panel">
+                    <span class="utility-side-tag">Left Clip</span>
+                    <video class="video-player utility-video" controls preload="none" playsinline>
+                      <source src="static/videos/utility/guided_def/Pass_2367605_27626/GroundTruth.mp4" type="video/mp4">
+                    </video>
+                  </figure>
+                  <figure class="utility-video-panel">
+                    <span class="utility-side-tag">Right Clip</span>
+                    <video class="video-player utility-video" controls preload="none" playsinline>
+                      <source src="static/videos/utility/guided_def/Pass_2367605_27626/Generated.mp4" type="video/mp4">
+                    </video>
+                  </figure>
+                </div>
+              </div>
+              <div class="utility-card-copy">
+                <div class="utility-card-panel">
+                  <div class="utility-quiz-controls" aria-label="Utility quiz navigation">
+                    <strong class="utility-quiz-progress">Pair <span data-utility-current>4</span> / 6</strong>
+                    <div class="utility-nav-buttons">
+                      <button class="utility-nav-button" type="button" data-utility-nav="prev">Previous</button>
+                      <button class="utility-nav-button" type="button" data-utility-nav="next">Next</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="utility-card-topline">
+                  <span class="utility-card-tag">Pair 04</span>
+                  <span class="utility-card-meta utility-card-meta-def">Defending Team</span>
+                  <span class="utility-card-event">Pass_2367605_27626</span>
+                </div>
+                <p class="utility-card-prompt">Which clip looks better for the <span class="utility-prompt-team utility-prompt-team-def">defending team</span>?</p>
+                <div class="utility-answer-row" role="group" aria-label="Pair 4 answer choices">
+                  <button class="utility-answer-button" type="button" data-choice="left">Left clip</button>
+                  <button class="utility-answer-button" type="button" data-choice="equal">Equal</button>
+                  <button class="utility-answer-button" type="button" data-choice="right">Right clip</button>
+                </div>
+                <div class="utility-feedback" hidden aria-live="polite"></div>
+              </div>
+            </article>
+
+            <article class="utility-card" data-left-type="generated" data-right-type="realistic" data-expert-generated="3" data-expert-realistic="1" data-expert-equal="1" data-expert-majority="generated">
+              <div class="utility-card-media">
+                <div class="utility-video-grid">
+                  <figure class="utility-video-panel">
+                    <span class="utility-side-tag">Left Clip</span>
+                    <video class="video-player utility-video" controls preload="none" playsinline>
+                      <source src="static/videos/utility/guided_def/Pass_2367781_146072/Generated.mp4" type="video/mp4">
+                    </video>
+                  </figure>
+                  <figure class="utility-video-panel">
+                    <span class="utility-side-tag">Right Clip</span>
+                    <video class="video-player utility-video" controls preload="none" playsinline>
+                      <source src="static/videos/utility/guided_def/Pass_2367781_146072/GroundTruth.mp4" type="video/mp4">
+                    </video>
+                  </figure>
+                </div>
+              </div>
+              <div class="utility-card-copy">
+                <div class="utility-card-panel">
+                  <div class="utility-quiz-controls" aria-label="Utility quiz navigation">
+                    <strong class="utility-quiz-progress">Pair <span data-utility-current>5</span> / 6</strong>
+                    <div class="utility-nav-buttons">
+                      <button class="utility-nav-button" type="button" data-utility-nav="prev">Previous</button>
+                      <button class="utility-nav-button" type="button" data-utility-nav="next">Next</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="utility-card-topline">
+                  <span class="utility-card-tag">Pair 05</span>
+                  <span class="utility-card-meta utility-card-meta-def">Defending Team</span>
+                  <span class="utility-card-event">Pass_2367781_146072</span>
+                </div>
+                <p class="utility-card-prompt">Which clip looks better for the <span class="utility-prompt-team utility-prompt-team-def">defending team</span>?</p>
+                <div class="utility-answer-row" role="group" aria-label="Pair 5 answer choices">
+                  <button class="utility-answer-button" type="button" data-choice="left">Left clip</button>
+                  <button class="utility-answer-button" type="button" data-choice="equal">Equal</button>
+                  <button class="utility-answer-button" type="button" data-choice="right">Right clip</button>
+                </div>
+                <div class="utility-feedback" hidden aria-live="polite"></div>
+              </div>
+            </article>
+
+            <article class="utility-card" data-left-type="realistic" data-right-type="generated" data-expert-generated="4" data-expert-realistic="1" data-expert-equal="0" data-expert-majority="generated">
+              <div class="utility-card-media">
+                <div class="utility-video-grid">
+                  <figure class="utility-video-panel">
+                    <span class="utility-side-tag">Left Clip</span>
+                    <video class="video-player utility-video" controls preload="none" playsinline>
+                      <source src="static/videos/utility/guided_def/Pass_2367824_24038/GroundTruth.mp4" type="video/mp4">
+                    </video>
+                  </figure>
+                  <figure class="utility-video-panel">
+                    <span class="utility-side-tag">Right Clip</span>
+                    <video class="video-player utility-video" controls preload="none" playsinline>
+                      <source src="static/videos/utility/guided_def/Pass_2367824_24038/Generated.mp4" type="video/mp4">
+                    </video>
+                  </figure>
+                </div>
+              </div>
+              <div class="utility-card-copy">
+                <div class="utility-card-panel">
+                  <div class="utility-quiz-controls" aria-label="Utility quiz navigation">
+                    <strong class="utility-quiz-progress">Pair <span data-utility-current>6</span> / 6</strong>
+                    <div class="utility-nav-buttons">
+                      <button class="utility-nav-button" type="button" data-utility-nav="prev">Previous</button>
+                      <button class="utility-nav-button" type="button" data-utility-nav="next">Next</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="utility-card-topline">
+                  <span class="utility-card-tag">Pair 06</span>
+                  <span class="utility-card-meta utility-card-meta-def">Defending Team</span>
+                  <span class="utility-card-event">Pass_2367824_24038</span>
+                </div>
+                <p class="utility-card-prompt">Which clip looks better for the <span class="utility-prompt-team utility-prompt-team-def">defending team</span>?</p>
+                <div class="utility-answer-row" role="group" aria-label="Pair 6 answer choices">
+                  <button class="utility-answer-button" type="button" data-choice="left">Left clip</button>
+                  <button class="utility-answer-button" type="button" data-choice="equal">Equal</button>
+                  <button class="utility-answer-button" type="button" data-choice="right">Right clip</button>
+                </div>
+                <div class="utility-feedback" hidden aria-live="polite"></div>
+              </div>
+            </article>
+          </div>
+        </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="realism-overview-modal" id="utility-overview-modal" hidden>
+      <div class="realism-overview-backdrop" data-utility-overview-close></div>
+      <div class="realism-overview-panel" role="dialog" aria-modal="true" aria-labelledby="utility-overview-title">
+        <button class="realism-overview-close" type="button" aria-label="Close utility overview" data-utility-overview-close>&times;</button>
+        <div class="realism-overview-copy">
+          <p class="kicker">Utility Preference</p>
+          <h2 id="utility-overview-title">Task Overview</h2>
+          <p>You will watch a set of short football videos. Each pair follows the same pattern:</p>
+
+          <ol>
+            <li><strong>Event context (10 frames)</strong> - real tracking data showing the ball and all 22 players' x / y positions for the 10 frames immediately before the on-ball event (pass, clearance, ball-touch, etc.).</li>
+            <li><strong>Post-event segment (N frames)</strong> - after the event occurs, the video continues to track the ball and all players until one of the following conditions is met: the next on-ball action occurs, the tracking data is completed, or the 64-frame limit is reached. The ball trajectory is always authentic, while the trajectories of the 22 players may either come from <strong>real tracking data</strong> or from <strong>AI adjustments that optimize the movement of one team</strong>.</li>
+            <li><strong>Freeze frame</strong> - the final frame is held for ~3 s so you can inspect the ending.</li>
+          </ol>
+
+          <h3>Additional Notes</h3>
+          <ul>
+            <li>The attacking team always moves <strong>left to right</strong>.</li>
+            <li><strong>Sampling rate:</strong> player tracking is captured at 10 Hz, and videos are rendered at 5 fps, so 1 s of video equals 0.5 s of real-world play.</li>
+            <li>The <strong>ball trajectory is always real</strong>. Minor disturbances may come from data inaccuracies, so please ignore those when making your judgment.</li>
+            <li>These six pairs are expert case studies: <strong>three focus on attacking utility</strong> and <strong>three focus on defending utility</strong>.</li>
+          </ul>
+
+          <h3>Your Task</h3>
+          <p>For each pair of videos, determine which clip of the <strong>post-event player trajectories for the highlighted team</strong> demonstrates <strong>better tactics and positioning strategy</strong>. Please treat <strong>realism as a least consideration</strong> in this task.</p>
+          <p>After you choose, the interface will reveal whether your selected clip was <strong>Generated</strong> or <strong>Realistic</strong>, and will also show how the experts voted.</p>
+        </div>
+      </div>
+    </div>
+
+    <section class="section-shell" id="paper">
+      <div class="container paper-layout">
+        <div class="section-heading reveal">
+          <p class="kicker">Paper</p>
+          <h2>Paper and Citation</h2>
+        </div>
+
+        <article class="abstract-card reveal">
+          <h3>Paper</h3>
+          <p>
+            Access the manuscript PDF and citation information below.
+          </p>
+
+          <div class="paper-links">
+            <a class="button button-primary" href="https://arxiv.org/pdf/2604.18210" target="_blank" rel="noopener noreferrer">Open Paper PDF</a>
+            <a class="button button-secondary paper-link-muted" href="#top">Back to Top</a>
+          </div>
+        </article>
+
+        <article class="bibtex-card reveal" id="bibtex">
+          <div class="bibtex-header">
+            <h3>BibTeX</h3>
+            <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
+              <span class="copy-text">Copy</span>
+            </button>
+          </div>
+          <pre id="bibtex-code"><code>@article{xu2026tacticgen,
+  title   = {TacticGen: Grounding Adaptable and Scalable Generation of Football Tactics},
+  author  = {Xu, Sheng and Liu, Guiliang and Kharrat, Tarak and Luo, Yudong and Aloulou, Mohamed and Lopez Pena, Javier and Sofeikov, Konstantin and Reid, Adam and Roberts, Paul and Spencer, Steven and Carnall, Joe and McHale, Ian and Schulte, Oliver and Zha, Hongyuan and Zheng, Wei-Shi},
+  journal = {arXiv preprint arXiv:2604.18210},
+  year    = {2026},
+  url     = {https://arxiv.org/abs/2604.18210}
+}</code></pre>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>TacticGen project page.</p>
+    </div>
+  </footer>
+</body>
+</html>
