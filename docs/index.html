@@ -8,7 +8,7 @@
   <meta name="title" content="TacticGen: Grounding Adaptable and Scalable Generation of Football Tactics">
   <meta name="description" content="Project page for TacticGen, a football tactics foundation-oriented model for multi-agent trajectory generation, guided tactical design, and expert-validated utility.">
   <meta name="keywords" content="football tactics, soccer analytics, multi-agent trajectory generation, diffusion transformer, sports analytics, tactical generation">
-  <meta name="author" content="Sheng Xu, Guiliang Liu, Tarak Kharrat, Yudong Luo, Mohamed Aloulou, Javier Lopez Pena, Konstantin Sofeikov, Adam Reid, Paul Roberts, Steven Spencer, Joe Carnall, Ian McHale, Oliver Schulte, Hongyuan Zha, Wei-Shi Zheng">
+  <meta name="author" content="Sheng Xu, Guiliang Liu, Tarak Kharrat, Yudong Luo, Mohamed Aloulou, Javier Lopez Pena, Konstantin Sofeikov, Adam Reid, Steven Spencer, Joe Carnall, Ian McHale, Oliver Schulte, Hongyuan Zha, Wei-Shi Zheng">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#10281b">
 
@@ -33,7 +33,6 @@
   <meta name="citation_author" content="Lopez Pena, Javier">
   <meta name="citation_author" content="Sofeikov, Konstantin">
   <meta name="citation_author" content="Reid, Adam">
-  <meta name="citation_author" content="Roberts, Paul">
   <meta name="citation_author" content="Spencer, Steven">
   <meta name="citation_author" content="Carnall, Joe">
   <meta name="citation_author" content="McHale, Ian">
@@ -66,7 +65,6 @@
       { "@type": "Person", "name": "Javier Lopez Pena" },
       { "@type": "Person", "name": "Konstantin Sofeikov" },
       { "@type": "Person", "name": "Adam Reid" },
-      { "@type": "Person", "name": "Paul Roberts" },
       { "@type": "Person", "name": "Steven Spencer" },
       { "@type": "Person", "name": "Joe Carnall" },
       { "@type": "Person", "name": "Ian McHale" },
@@ -130,12 +128,11 @@
               <span class="author-name">Tarak Kharrat<sup>2</sup></span>
               <span class="author-name">Yudong Luo<sup>1</sup></span>
               <span class="author-name">Mohamed Aloulou<sup>2</sup></span>
-              <span class="author-name">Javier L&oacute;pez Pe&ntilde;a<sup>2</sup></span>
             </div>
             <div class="author-line">
+              <span class="author-name">Javier L&oacute;pez Pe&ntilde;a<sup>2</sup></span>
               <span class="author-name">Konstantin Sofeikov<sup>2</sup></span>
               <span class="author-name">Adam Reid<sup>2</sup></span>
-              <span class="author-name">Paul Roberts<sup>2</sup></span>
               <span class="author-name">Steven Spencer<sup>3</sup></span>
               <span class="author-name">Joe Carnall<sup>3</sup></span>
             </div>
@@ -1771,6 +1768,284 @@
           <h2>Paper and Citation</h2>
         </div>
 
+        <article class="author-bios-card reveal">
+          <div class="author-bios-head">
+            <div>
+              <p class="author-bios-kicker">Authors</p>
+              <h3>Author Biographies</h3>
+            </div>
+            <div class="author-bios-controls" aria-label="Author biography navigation">
+              <button class="button button-secondary paper-bio-nav" type="button" data-bio-nav="prev" aria-label="Scroll author biographies left">← Prev</button>
+              <button class="button button-secondary paper-bio-nav" type="button" data-bio-nav="next" aria-label="Scroll author biographies right">Next →</button>
+            </div>
+          </div>
+
+          <div class="author-bios-rail-shell">
+            <div class="author-bios-rail" id="author-bios-rail" aria-label="Author biographies">
+              <article class="author-bio-card">
+                <div class="author-bio-photo-shell">
+                  <img src="static/images/bios/shengxu.jpg" alt="Portrait of Sheng Xu" loading="lazy">
+                </div>
+                <div class="author-bio-copy">
+                  <p class="author-bio-role">Ph.D. Student</p>
+                  <h4>Sheng Xu</h4>
+                  <div class="author-bio-education">
+                    <ul class="author-bio-education-list">
+                      <li>Ph.D., CUHK-SZ, ongoing</li>
+                      <li>B.S., Northwestern Polytechnical University, 2023</li>
+                    </ul>
+                  </div>
+                  <p class="author-bio-text">
+                    Sheng Xu is currently pursuing the Ph.D. degree with the School of Data Science, The Chinese University of Hong Kong, Shenzhen. He received the B.S. degree in computer science and technology from Northwestern Polytechnical University in 2023. His research interests include reinforcement learning, embodied AI, and sports analytics. His work has been published in international venues including ICLR, ICML, NeurIPS, and TMLR. He is also a core developer of EmbodiChain, a GPU-accelerated and modular platform for embodied intelligence. He has served as a reviewer for conferences and journals, including ICLR, ICML, NeurIPS, TMLR, ECCV, AAAI, and AISTATS.
+                  </p>
+                </div>
+              </article>
+
+              <article class="author-bio-card">
+                <div class="author-bio-photo-shell">
+                  <img src="static/images/bios/guiliang.jpg" alt="Portrait of Guiliang Liu" loading="lazy">
+                </div>
+                <div class="author-bio-copy">
+                  <p class="author-bio-role">Assistant Professor</p>
+                  <h4>Guiliang Liu</h4>
+                  <div class="author-bio-education">
+                    <ul class="author-bio-education-list">
+                      <li>Ph.D., Simon Fraser University, 2020</li>
+                      <li>B.S., South China University of Technology, 2016</li>
+                    </ul>
+                  </div>
+                  <p class="author-bio-text">
+                    Guiliang Liu is currently working as an Assistant Professor at the School of Data Science at The Chinese University of Hong Kong, Shenzhen. He obtained his undergraduate degree from South China University of Technology. He then earned his Ph.D. in computer science from Simon Fraser University in Canada and completed postdoctoral research at the University of Waterloo and the Vector Institute in Canada. His research primarily focuses on reinforcement learning and embodied decision-making. In the field of safe reinforcement learning, he leverages inverse constraint inference methods to enhance the safety of reinforcement learning systems. Additionally, he specializes in embodied robotic manipulation skills, developing efficient data engines to improve robotic operation in complex tasks, and designing robust control algorithms to ensure the safety and stability of humanoid robots in challenging environments. His research collaborators include Baidu Research, Huawei Noah's Ark Lab, and DexForce Research.
+                  </p>
+                </div>
+              </article>
+
+              <article class="author-bio-card">
+                <div class="author-bio-photo-shell">
+                  <img src="static/images/bios/tarak.png" alt="Portrait of Tarak Kharrat" loading="lazy">
+                </div>
+                <div class="author-bio-copy">
+                  <p class="author-bio-role">Director, Real Analytics</p>
+                  <h4>Tarak Kharrat</h4>
+                  <div class="author-bio-education">
+                    <ul class="author-bio-education-list">
+                      <li>Ph.D., University of Manchester, 2015</li>
+                      <li>M.S., La Sorbonne (Paris 1-Paris 6), 2010</li>
+                      <li>B.S., ENSTA Paris, 2009</li>
+                    </ul>
+                  </div>
+                  <p class="author-bio-text">
+                    Tarak Kharrat is currently the director at Real Analytics, London, U.K., where he leads AI and analytics research for football decision-making and player recruitment. He received the Ph.D. degree in statistics from the University of Manchester in 2015. He has also held lead data scientist roles at ComplyAdvantage and Kickdex, as well as research fellow appointments with the University of Liverpool and the University of Salford. His work focuses on football analytics, predictive modeling, and machine learning, and he has published influential research on soccer player evaluation, plus-minus ratings, football score forecasting, and statistical modeling.
+                  </p>
+                </div>
+              </article>
+
+              <article class="author-bio-card">
+                <div class="author-bio-photo-shell">
+                  <img src="static/images/bios/yudong.jpg" alt="Portrait of Yudong Luo" loading="lazy">
+                </div>
+                <div class="author-bio-copy">
+                  <p class="author-bio-role">Postdoctoral Researcher</p>
+                  <h4>Yudong Luo</h4>
+                  <div class="author-bio-education">
+                    <ul class="author-bio-education-list">
+                      <li>Ph.D., University of Waterloo, 2024</li>
+                      <li>M.Sc., Simon Fraser University, 2020</li>
+                      <li>B.Eng., Shanghai Jiao Tong University, 2018</li>
+                    </ul>
+                  </div>
+                  <p class="author-bio-text">
+                    Yudong Luo is currently a postdoctoral researcher with the Department of Decision Science, HEC Montreal, and Mila-Quebec AI Institute. He received the Ph.D. degree in computer science from the University of Waterloo in 2024, the M.Sc. degree in computing science from Simon Fraser University in 2020, and the B.Eng. degree in computer science from Shanghai Jiao Tong University in 2018. His research interests include reinforcement learning, risk-sensitive decision-making, machine learning, and sports analytics. His work has appeared in leading venues such as NeurIPS, ICLR, IJCAI, RA-L, and ICRA. He has also served as a reviewer for major conferences and journals, including NeurIPS, ICLR, ICML, ICRA, and JMLR.
+                  </p>
+                </div>
+              </article>
+
+              <article class="author-bio-card">
+                <div class="author-bio-photo-shell">
+                  <img src="static/images/bios/mohamed.jpg" alt="Portrait of Mohamed Aloulou" loading="lazy">
+                </div>
+                <div class="author-bio-copy">
+                  <p class="author-bio-role">Master Student</p>
+                  <h4>Mohamed Aloulou</h4>
+                  <div class="author-bio-education">
+                    <ul class="author-bio-education-list">
+                      <li>Master 2 IASD, Universite PSL, ongoing</li>
+                      <li>Ingenieur Polytechnicien, Ecole Polytechnique, 2025</li>
+                    </ul>
+                  </div>
+                  <p class="author-bio-text">
+                    Mohamed Aloulou is currently pursuing the M2 IASD master's program in artificial intelligence at Universite PSL as the final year of the Ingenieur Polytechnicien Program in applied mathematics at Ecole Polytechnique. He previously completed research internships at Birmingham City F.C., within Real Analytics, where he contributed to offline reinforcement learning tools for football tactics. His research interests include machine learning, reinforcement learning, and sports analytics.
+                  </p>
+                </div>
+              </article>
+
+              <article class="author-bio-card">
+                <div class="author-bio-photo-shell">
+                  <img src="static/images/bios/javier.jpg" alt="Portrait of Javier Lopez Pena" loading="lazy">
+                </div>
+                <div class="author-bio-copy">
+                  <p class="author-bio-role">Principal Engineer, Real Analytics</p>
+                  <h4>Javier L&oacute;pez Pe&ntilde;a</h4>
+                  <div class="author-bio-education">
+                    <ul class="author-bio-education-list">
+                      <li>Ph.D., Universidad de Granada, 2007</li>
+                      <li>M.S., Universiteit Antwerpen, 2006</li>
+                      <li>B.S., Universidad de Granada, 2003</li>
+                    </ul>
+                  </div>
+                  <p class="author-bio-text">
+                    Javier L&oacute;pez Pe&ntilde;a is currently a Principal AI Engineer at Real Analytics. He received the Ph.D. degree in mathematics from Universidad de Granada in 2007, the master's degree in noncommutative algebra and geometry from Universiteit Antwerpen in 2006, and the bachelor's degree in mathematics from Universidad de Granada in 2003. He has held a broad range of academic and industry leadership roles, including Senior Data Science Manager at Wayflyer, Head of Data Science at LoalApp and Oakam Ltd, Teaching Fellow at University College London, and Head of Research and Development at Kickdex. Earlier in his career, he was a Marie-Curie Postdoctoral Fellow at Queen Mary University of London, and a Postdoctoral Fellow at the Max Planck Institute for Mathematics. His work spans artificial intelligence, statistical modeling, predictive analytics, and football analytics.
+                  </p>
+                </div>
+              </article>
+
+              <article class="author-bio-card">
+                <div class="author-bio-photo-shell">
+                  <img src="static/images/bios/konstantin.jpg" alt="Portrait of Konstantin Sofeikov" loading="lazy">
+                </div>
+                <div class="author-bio-copy">
+                  <p class="author-bio-role">Engineer, Real Analytics</p>
+                  <h4>Konstantin Sofeikov</h4>
+                  <div class="author-bio-education">
+                    <ul class="author-bio-education-list">
+                      <li>Ph.D., University of Leicester, 2017</li>
+                    </ul>
+                  </div>
+                  <p class="author-bio-text">
+                    Konstantin Sofeikov is currently an Engineer with Real Analytics. He received the Ph.D. degree in applied mathematics from the University of Leicester in 2017, with a dissertation on measure concentration in computer vision applications. He previously held senior machine learning and research positions at WorldRemit, ComplyAdvantage, Arm, and Apical. Trained as an applied mathematician, he has extensive experience in machine learning, computer vision, scientific computing, and large-scale data processing systems. His work includes AI model evaluation pipelines, mathematical method development, image processing, and the design and improvement of efficient research and data infrastructure.
+                  </p>
+                </div>
+              </article>
+
+              <article class="author-bio-card">
+                <div class="author-bio-photo-shell">
+                  <img src="static/images/bios/adam.jpg" alt="Portrait of Adam Reid" loading="lazy">
+                </div>
+                <div class="author-bio-copy">
+                  <p class="author-bio-role">CTO, Real Analytics</p>
+                  <h4>Adam Reid</h4>
+                  <p class="author-bio-text">
+                    Adam Reid is currently the Chief Technology Officer at Real Analytics, where he leads the development of artificial intelligence systems for football decision-making. He previously founded and served as CTO of Kickdex, where he led the design and development of a football prediction and data science platform. Earlier in his career, he held a range of senior technical and software engineering roles across consulting, analytics, and financial technology. His expertise includes software architecture, machine learning systems, and applied AI for real-world decision support.
+                  </p>
+                </div>
+              </article>
+
+              <article class="author-bio-card">
+                <div class="author-bio-photo-shell">
+                  <img src="static/images/bios/steven.jpg" alt="Portrait of Steven Spencer" loading="lazy">
+                </div>
+                <div class="author-bio-copy">
+                  <p class="author-bio-role">Head of First Team Recruitment Data</p>
+                  <h4>Steven Spencer</h4>
+                  <div class="author-bio-education">
+                    <ul class="author-bio-education-list">
+                      <li>Postgraduate Diploma, PFA Business School, ongoing</li>
+                    </ul>
+                  </div>
+                  <p class="author-bio-text">
+                    Steven Spencer is currently the Head of First Team Recruitment Data at Birmingham City F.C., where he specializes in data-driven player identification, squad construction, and recruitment strategy. Drawing on a distinctive background across elite football, recruitment, and leadership, he combines analytical insight with practical football expertise to support first-team decision-making and long-term competitive advantage. He previously founded and led Futura Sports Management, worked as a football consultant with Real Analytics, and built extensive experience as a licensed football agent. Earlier in his career, he was a professional football player with Sheffield United PLC. He is also pursuing a Postgraduate Diploma in Global Football Sport Directorship at PFA Business School.
+                  </p>
+                </div>
+              </article>
+
+              <article class="author-bio-card">
+                <div class="author-bio-photo-shell">
+                  <img src="static/images/bios/joe.jpg" alt="Portrait of Joe Carnall" loading="lazy">
+                </div>
+                <div class="author-bio-copy">
+                  <p class="author-bio-role">Head of Recruitment</p>
+                  <h4>Joe Carnall</h4>
+                  <div class="author-bio-education">
+                    <ul class="author-bio-education-list">
+                      <li>City Technology College Kingshurst, 2005</li>
+                    </ul>
+                  </div>
+                  <p class="author-bio-text">
+                    Joe Carnall is currently the Head of Recruitment at Birmingham City F.C., after previously serving as the club's Chief Scout. He has built an extensive career in elite football across recruitment, scouting, tactical analysis, and performance analysis, with senior roles at Birmingham City, Millwall, Stoke City, Derby County, Nottingham Forest, and Sheffield United football clubs. With deep experience in player identification, squad building, opposition and tactical analysis, and recruitment strategy, he is known for combining traditional football insight with data-informed decision-making to support high-level first-team operations. His professional interests include player recruitment, scouting, performance analysis, and football analytics.
+                  </p>
+                </div>
+              </article>
+
+              <article class="author-bio-card">
+                <div class="author-bio-photo-shell">
+                  <img src="static/images/bios/ian.png" alt="Portrait of Ian McHale" loading="lazy">
+                </div>
+                <div class="author-bio-copy">
+                  <p class="author-bio-role">Professor</p>
+                  <h4>Ian McHale</h4>
+                  <div class="author-bio-education">
+                    <ul class="author-bio-education-list">
+                      <li>Ph.D., University of Manchester, 2001</li>
+                      <li>B.S., University of Liverpool, 1998</li>
+                    </ul>
+                  </div>
+                  <p class="author-bio-text">
+                    Ian McHale is currently a Professor of Sports Analytics with the University of Liverpool, after previously serving as a Professor at the University of Salford. He received the Ph.D. degree in statistics from the University of Manchester and the bachelor's degree in mathematical physics from the University of Liverpool. His research focuses on statistics in sport, sports forecasting, and the analysis of gambling markets and gambling-related behavior. He was the founding Chair of the Royal Statistical Society's Statistics in Sport Section, has served as an Associate Editor of the International Journal of Forecasting and the Journal of Quantitative Analysis in Sport, and has published extensively on ranking methods, forecasting in football, tennis, cricket, and golf. He has also advised football clubs, the Premier League, and other major organizations, and in 2005 created the EA SPORTS Player Performance Indicator, the official player ratings system of the Barclays Premier League.
+                  </p>
+                </div>
+              </article>
+
+              <article class="author-bio-card">
+                <div class="author-bio-photo-shell">
+                  <img src="static/images/bios/oliver.jpg" alt="Portrait of Oliver Schulte" loading="lazy">
+                </div>
+                <div class="author-bio-copy">
+                  <p class="author-bio-role">Professor and School Director</p>
+                  <h4>Oliver Schulte</h4>
+                  <div class="author-bio-education">
+                    <ul class="author-bio-education-list">
+                      <li>Ph.D., Carnegie Mellon University, 1997</li>
+                      <li>M.Sc., Carnegie Mellon University, 1993</li>
+                      <li>B.Sc., University of Toronto, 1992</li>
+                    </ul>
+                  </div>
+                  <p class="author-bio-text">
+                    Oliver Schulte is currently a Professor and School Director with the School of Computing Science at Simon Fraser University, where he also directs the Structured Machine Learning Lab and is affiliated with the Department of Statistics, the VINCI institute, and the SFU Sports Analytics Group. He received the Ph.D. and M.Sc. degrees in logic and computation from Carnegie Mellon University in 1997 and 1993, respectively, and the B.Sc. degree in computing science from the University of Toronto in 1992. His research interests include machine learning for structured data, learning theory, computational game theory, and sports analytics. He has made influential contributions to relational learning, reinforcement learning for sports analytics, and predictive modeling, and has received recognition, including an NSERC Discovery and Accelerator award, a Strategic Project partnership award, and a best paper award at the StarAI@IJCAI workshop.
+                  </p>
+                </div>
+              </article>
+
+              <article class="author-bio-card">
+                <div class="author-bio-photo-shell">
+                  <img src="static/images/bios/hongyuan.png" alt="Portrait of Hongyuan Zha" loading="lazy">
+                </div>
+                <div class="author-bio-copy">
+                  <p class="author-bio-role">Presidential Chair Professor</p>
+                  <h4>Hongyuan Zha</h4>
+                  <div class="author-bio-education">
+                    <ul class="author-bio-education-list">
+                      <li>Ph.D., Stanford University, 1993</li>
+                      <li>B.S., Fudan University, 1984</li>
+                    </ul>
+                  </div>
+                  <p class="author-bio-text">
+                    Hongyuan Zha is a Presidential Chair Professor at The Chinese University of Hong Kong, Shenzhen, and the Associate Dean of the School of Data Science. He received the B.S. degree in mathematics from Fudan University in 1984 and the Ph.D. degree in scientific computing from Stanford University in 1993. He previously served on the faculty of Georgia Institute of Technology and Pennsylvania State University, and also worked at Inktomi Corporation. His research interests include machine learning and its applications. He has published over 400 papers in leading journals and conferences, with more than 42,000 citations. His honors include the Leslie Fox Prize, the SIGIR 2011 Best Student Paper Award as advising professor, and the NeurIPS 2013 Outstanding Paper Award.
+                  </p>
+                </div>
+              </article>
+
+              <article class="author-bio-card">
+                <div class="author-bio-photo-shell">
+                  <img src="static/images/bios/weishi.png" alt="Portrait of Wei-Shi Zheng" loading="lazy">
+                </div>
+                <div class="author-bio-copy">
+                  <p class="author-bio-role">Full Professor</p>
+                  <h4>Wei-Shi Zheng</h4>
+                  <div class="author-bio-education">
+                    <ul class="author-bio-education-list">
+                      <li>Ph.D., Sun Yat-sen University, 2008</li>
+                      <li>B.S., Sun Yat-sen University, 2003</li>
+                    </ul>
+                  </div>
+                  <p class="author-bio-text">
+                    Wei-Shi Zheng is currently a Full Professor with Sun Yat-sen University. He has published more than 200 papers, including more than 150 publications in main journals (IEEE TPAMI, IJCV, and IEEE TIP) and top conferences (ICCV, CVPR, SIGGRAPH, ECCV, and NeurIPS). His research interests include person/object association and activity understanding, and the related weakly supervised/unsupervised and continuous learning machine learning algorithms. He has served as the Area Chair of ICCV, CVPR, ECCV, BMVC, and NeurIPS. He has joined the Microsoft Research Asia Young Faculty Visiting Programme. He is a Cheung Kong Scholar Distinguished Professor. He was a recipient of the Excellent Young Scientists Fund of the National Natural Science Foundation of China and the Royal Society-Newton Advanced Fellowship of the U.K. He is an Associate Editor of IEEE Transactions on Pattern Analysis and Machine Intelligence, Artificial Intelligence journal, and Pattern Recognition.
+                  </p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </article>
+
         <article class="abstract-card reveal">
           <h3>Paper</h3>
           <p>
@@ -1792,7 +2067,7 @@
           </div>
           <pre id="bibtex-code"><code>@article{xu2026tacticgen,
   title   = {TacticGen: Grounding Adaptable and Scalable Generation of Football Tactics},
-  author  = {Xu, Sheng and Liu, Guiliang and Kharrat, Tarak and Luo, Yudong and Aloulou, Mohamed and Lopez Pena, Javier and Sofeikov, Konstantin and Reid, Adam and Roberts, Paul and Spencer, Steven and Carnall, Joe and McHale, Ian and Schulte, Oliver and Zha, Hongyuan and Zheng, Wei-Shi},
+  author  = {Xu, Sheng and Liu, Guiliang and Kharrat, Tarak and Luo, Yudong and Aloulou, Mohamed and Lopez Pena, Javier and Sofeikov, Konstantin and Reid, Adam and Spencer, Steven and Carnall, Joe and McHale, Ian and Schulte, Oliver and Zha, Hongyuan and Zheng, Wei-Shi},
   journal = {arXiv preprint arXiv:2604.18210},
   year    = {2026},
   url     = {https://arxiv.org/abs/2604.18210}

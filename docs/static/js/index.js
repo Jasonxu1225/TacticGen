@@ -560,6 +560,84 @@ function setupUtilityQuiz() {
     syncQuizUi();
 }
 
+function setupBioCarousel() {
+    const carousel = document.getElementById("author-bios-rail");
+    if (!carousel) return;
+
+    const cards = Array.from(carousel.querySelectorAll(".author-bio-card"));
+    const prevButtons = Array.from(document.querySelectorAll('[data-bio-nav="prev"]'));
+    const nextButtons = Array.from(document.querySelectorAll('[data-bio-nav="next"]'));
+    if (!cards.length || !prevButtons.length || !nextButtons.length) return;
+
+    let currentIndex = 0;
+    const edgeTolerance = 4;
+
+    const getNearestIndex = () => {
+        let nearestIndex = 0;
+        let nearestDistance = Number.POSITIVE_INFINITY;
+
+        cards.forEach((card, index) => {
+            const distance = Math.abs(card.offsetLeft - carousel.scrollLeft);
+            if (distance < nearestDistance) {
+                nearestDistance = distance;
+                nearestIndex = index;
+            }
+        });
+
+        return nearestIndex;
+    };
+
+    const syncUi = () => {
+        const maxScrollLeft = Math.max(0, carousel.scrollWidth - carousel.clientWidth);
+        const atStart = carousel.scrollLeft <= edgeTolerance;
+        const atEnd = maxScrollLeft - carousel.scrollLeft <= edgeTolerance;
+
+        prevButtons.forEach((button) => {
+            button.disabled = atStart || currentIndex <= 0;
+        });
+        nextButtons.forEach((button) => {
+            button.disabled = atEnd;
+        });
+    };
+
+    const scrollToCard = (index, behavior = "smooth") => {
+        currentIndex = Math.max(0, Math.min(index, cards.length - 1));
+        cards[currentIndex].scrollIntoView({
+            behavior,
+            block: "nearest",
+            inline: "start"
+        });
+        syncUi();
+    };
+
+    prevButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            scrollToCard(currentIndex - 1);
+        });
+    });
+
+    nextButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            scrollToCard(currentIndex + 1);
+        });
+    });
+
+    let scrollTimer = null;
+    carousel.addEventListener("scroll", () => {
+        window.clearTimeout(scrollTimer);
+        scrollTimer = window.setTimeout(() => {
+            currentIndex = getNearestIndex();
+            syncUi();
+        }, 80);
+    }, { passive: true });
+
+    window.addEventListener("resize", () => {
+        scrollToCard(currentIndex, "auto");
+    });
+
+    syncUi();
+}
+
 const ACTION_VIS_DATA = [
     { action: "Pass", count: 1403863, type: "attacking" },
     { action: "Control", count: 1339852, type: "attacking" },
@@ -979,5 +1057,6 @@ document.addEventListener("DOMContentLoaded", () => {
     setupRealismOverviewModal();
     setupUtilityQuiz();
     setupUtilityOverviewModal();
+    setupBioCarousel();
     setupDatasetVisualizers();
 });

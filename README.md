@@ -12,7 +12,6 @@
   <br/>
   <a href="https://www.linkedin.com/in/sofeikov/">Konstantin Sofeikov</a><sup>2</sup>,
   <a href="https://www.linkedin.com/in/reidadam/">Adam Reid</a><sup>2</sup>,
-  Paul Roberts<sup>2</sup>,
   <a href="https://www.linkedin.com/in/steven-spencer-00b20930/">Steven Spencer</a><sup>3</sup>,
   <a href="https://www.linkedin.com/in/joe-carnall-79478942/">Joe Carnall</a><sup>3</sup>,
   <br/>
@@ -91,7 +90,7 @@ If you find TacticGen useful in your research, please cite:
 ```bibtex
 @article{xu2026tacticgen,
   title   = {TacticGen: Grounding Adaptable and Scalable Generation of Football Tactics},
-  author  = {Xu, Sheng and Liu, Guiliang and Kharrat, Tarak and Luo, Yudong and Aloulou, Mohamed and Lopez Pena, Javier and Sofeikov, Konstantin and Reid, Adam and Roberts, Paul and Spencer, Steven and Carnall, Joe and McHale, Ian and Schulte, Oliver and Zha, Hongyuan and Zheng, Wei-Shi},
+  author  = {Xu, Sheng and Liu, Guiliang and Kharrat, Tarak and Luo, Yudong and Aloulou, Mohamed and Lopez Pena, Javier and Sofeikov, Konstantin and Reid, Adam and Spencer, Steven and Carnall, Joe and McHale, Ian and Schulte, Oliver and Zha, Hongyuan and Zheng, Wei-Shi},
   journal = {arXiv preprint arXiv:2604.18210},
   year    = {2026},
   url     = {https://arxiv.org/abs/2604.18210}
