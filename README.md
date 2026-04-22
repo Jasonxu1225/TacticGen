@@ -10,7 +10,7 @@
   <a href="https://www.linkedin.com/in/mohamed-aloulou/">Mohamed Aloulou</a><sup>2</sup>,
   <a href="https://www.linkedin.com/in/jlopezpena/">Javier Lopez Pena</a><sup>2</sup>,
   <br/>
-  Konstantin Sofeikov<sup>2</sup>,
+  <a href="https://www.linkedin.com/in/sofeikov/">Konstantin Sofeikov</a><sup>2</sup>,
   <a href="https://www.linkedin.com/in/reidadam/">Adam Reid</a><sup>2</sup>,
   Paul Roberts<sup>2</sup>,
   <a href="https://www.linkedin.com/in/steven-spencer-00b20930/">Steven Spencer</a><sup>3</sup>,
