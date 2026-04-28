@@ -178,6 +178,64 @@ function setupDeferredVideos() {
     });
 }
 
+function setupMainPaperVideoSwitcher() {
+    const switcher = document.querySelector("[data-main-paper-video-switcher]");
+    if (!switcher) return;
+
+    const video = switcher.querySelector("[data-main-paper-video]");
+    const source = video ? video.querySelector("source") : null;
+    const buttons = Array.from(switcher.querySelectorAll("[data-video-button]"));
+    const ref = switcher.querySelector("[data-main-paper-video-ref]");
+    const title = switcher.querySelector("[data-main-paper-video-title]");
+    const description = switcher.querySelector("[data-main-paper-video-description]");
+    if (!video || !source || !buttons.length || !ref || !title || !description) return;
+
+    const setActiveButton = (activeButton) => {
+        buttons.forEach((button) => {
+            const isActive = button === activeButton;
+            button.classList.toggle("is-active", isActive);
+            button.setAttribute("aria-selected", String(isActive));
+        });
+    };
+
+    const updateVideo = (button, shouldPlay = true) => {
+        const nextSrc = button.dataset.videoSrc;
+        if (!nextSrc) return;
+
+        setActiveButton(button);
+        ref.textContent = button.dataset.videoRef || "";
+        title.textContent = button.dataset.videoTitle || "";
+        description.textContent = button.dataset.videoDescription || "";
+
+        if (source.getAttribute("src") !== nextSrc) {
+            video.pause();
+            source.setAttribute("src", nextSrc);
+            video.dataset.previewQueued = "false";
+            video.dataset.firstFrameReady = "false";
+            video.load();
+        }
+
+        if (!shouldPlay) return;
+        video.dataset.previewQueued = "true";
+        video.dataset.firstFrameReady = "true";
+        const playPromise = video.play();
+        if (playPromise && typeof playPromise.catch === "function") {
+            playPromise.catch(() => {
+                video.controls = true;
+            });
+        }
+    };
+
+    buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+            updateVideo(button);
+        });
+    });
+
+    const initialButton = buttons.find((button) => button.classList.contains("is-active")) || buttons[0];
+    updateVideo(initialButton, false);
+}
+
 function setupRealismQuiz() {
     const carousel = document.getElementById("realism-carousel");
     if (!carousel) return;
@@ -1053,6 +1111,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setupReveals();
     setupActiveNav();
     setupDeferredVideos();
+    setupMainPaperVideoSwitcher();
     setupRealismQuiz();
     setupRealismOverviewModal();
     setupUtilityQuiz();

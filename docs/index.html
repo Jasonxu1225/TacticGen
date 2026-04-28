@@ -934,146 +934,213 @@
           </div>
         </article>
 
-        <div class="video-grid">
-          <figure class="video-card reveal">
-            <video class="video-player" controls preload="none" playsinline>
-              <source src="static/videos/Movie%203(f).mp4" type="video/mp4">
-            </video>
-            <figcaption class="video-meta">
-              <span class="video-ref">Conditional Prediction</span>
-              <h3>TacticGen-C Prediction</h3>
-              <p>This clip shows conditional trajectory prediction for a pass event, where player movement is generated while following the
-                observed ball trajectory.</p>
-            </figcaption>
-          </figure>
+        <div class="main-paper-video-switcher reveal" data-main-paper-video-switcher>
+          <h3 class="main-paper-video-heading">Main Paper Videos</h3>
 
-          <figure class="video-card reveal">
-            <video class="video-player" controls preload="none" playsinline>
-              <source src="static/videos/Movie%205(b).mp4" type="video/mp4">
-            </video>
-            <figcaption class="video-meta">
-              <span class="video-ref">Rule Guidance</span>
-              <h3>Attacking Rule Guidance</h3>
-              <p>The attacking team is guided by composed tactical rules: support the ball carrier, maintain width, create passing angles,
-                and occupy Zone 14.</p>
-            </figcaption>
-          </figure>
+          <div class="main-paper-video-controls" role="group" aria-label="Main paper video selections">
+            <div class="main-paper-video-group-title">Conditional Prediction</div>
+            <button
+              type="button"
+              class="main-paper-video-button is-active"
+              data-video-button
+              data-video-src="static/videos/Movie%203(f).mp4"
+              data-video-ref="Conditional Prediction"
+              data-video-title="TacticGen-C Prediction"
+              data-video-description="This clip shows conditional trajectory prediction for a pass event, where player movement is generated while following the observed ball trajectory."
+              aria-selected="true">
+              <span class="main-paper-video-index">01</span>
+              <span class="main-paper-video-label">
+                <span>Cond. Prediction</span>
+                <strong>TacticGen-C Prediction</strong>
+              </span>
+            </button>
 
-          <figure class="video-card reveal">
-            <video class="video-player" controls preload="none" playsinline>
-              <source src="static/videos/Movie%205(c).mp4" type="video/mp4">
-            </video>
-            <figcaption class="video-meta">
-              <span class="video-ref">Rule Guidance</span>
-              <h3>Defending Rule Guidance</h3>
-              <p>The defending team is guided to press the ball carrier, collapse toward the ball, deepen the block, and reduce passing
-                lanes.</p>
-            </figcaption>
-          </figure>
+            <div class="main-paper-video-group-title">Rule Guidance</div>
+            <button
+              type="button"
+              class="main-paper-video-button"
+              data-video-button
+              data-video-src="static/videos/Movie%205(b).mp4"
+              data-video-ref="Rule Guidance"
+              data-video-title="Attacking Rule Guidance"
+              data-video-description="The attacking team is guided by composed tactical rules: support the ball carrier, maintain width, create passing angles, and occupy Zone 14."
+              aria-selected="false">
+              <span class="main-paper-video-index">02</span>
+              <span class="main-paper-video-label">
+                <span>Attack</span>
+                <strong>Att. Rules</strong>
+              </span>
+            </button>
+            <button
+              type="button"
+              class="main-paper-video-button"
+              data-video-button
+              data-video-src="static/videos/Movie%205(c).mp4"
+              data-video-ref="Rule Guidance"
+              data-video-title="Defending Rule Guidance"
+              data-video-description="The defending team is guided to press the ball carrier, collapse toward the ball, deepen the block, and reduce passing lanes."
+              aria-selected="false">
+              <span class="main-paper-video-index">03</span>
+              <span class="main-paper-video-label">
+                <span>Defense</span>
+                <strong>Def. Rules</strong>
+              </span>
+            </button>
 
-          <figure class="video-card reveal">
-            <video class="video-player" controls preload="none" playsinline>
-              <source src="static/videos/Movie%206(a)%20bottom.mp4" type="video/mp4">
-            </video>
-            <figcaption class="video-meta">
-              <span class="video-ref">Pitch Control Map</span>
-              <h3>Ground-Truth PCV</h3>
-              <p>This is the reference pitch-control map at the final frame, showing the baseline spatial dominance before any PCV guidance
-                is applied.</p>
-            </figcaption>
-          </figure>
+            <div class="main-paper-video-group-title">Pitch Control Guidance</div>
+            <button
+              type="button"
+              class="main-paper-video-button"
+              data-video-button
+              data-video-src="static/videos/Movie%206(b)%20top.mp4"
+              data-video-ref="Pitch Control Guidance"
+              data-video-title="Attack High PCV Trajectory"
+              data-video-description="This trajectory view shows pitch-control guidance for the attacking team, encouraging runners to move forward and create more attacking space."
+              aria-selected="false">
+              <span class="main-paper-video-index">04</span>
+              <span class="main-paper-video-label">
+                <span>Attack Trajectory</span>
+                <strong>Att. High PCV</strong>
+              </span>
+            </button>
+            <button
+              type="button"
+              class="main-paper-video-button"
+              data-video-button
+              data-video-src="static/videos/Movie%206(c)%20top.mp4"
+              data-video-ref="Pitch Control Guidance"
+              data-video-title="Defense High PCV Trajectory"
+              data-video-description="This trajectory view shows PCV guidance for the defending team, increasing pressure on the carrier and improving central coverage."
+              aria-selected="false">
+              <span class="main-paper-video-index">05</span>
+              <span class="main-paper-video-label">
+                <span>Defense Trajectory</span>
+                <strong>Def. High PCV</strong>
+              </span>
+            </button>
 
-          <figure class="video-card reveal">
-            <video class="video-player" controls preload="none" playsinline>
-              <source src="static/videos/Movie%206(b)%20top.mp4" type="video/mp4">
-            </video>
-            <figcaption class="video-meta">
-              <span class="video-ref">Pitch Control Guidance</span>
-              <h3>Attack High PCV Trajectory</h3>
-              <p>This trajectory view shows pitch-control guidance for the attacking team, encouraging runners to move forward and create
-                more attacking space.</p>
-            </figcaption>
-          </figure>
+            <div class="main-paper-video-group-title">Pitch Control Map</div>
+            <button
+              type="button"
+              class="main-paper-video-button"
+              data-video-button
+              data-video-src="static/videos/Movie%206(a)%20bottom.mp4"
+              data-video-ref="Pitch Control Map"
+              data-video-title="Ground-Truth PCV"
+              data-video-description="This is the reference pitch-control map at the final frame, showing the baseline spatial dominance before any PCV guidance is applied."
+              aria-selected="false">
+              <span class="main-paper-video-index">06</span>
+              <span class="main-paper-video-label">
+                <span>Reference Map</span>
+                <strong>GT PCV</strong>
+              </span>
+            </button>
+            <button
+              type="button"
+              class="main-paper-video-button"
+              data-video-button
+              data-video-src="static/videos/Movie%206(b)%20bottom.mp4"
+              data-video-ref="Pitch Control Map"
+              data-video-title="Attack High PCV Map"
+              data-video-description="This final-frame pitch-control map shows how attacking control expands into more dangerous offensive areas under PCV guidance."
+              aria-selected="false">
+              <span class="main-paper-video-index">07</span>
+              <span class="main-paper-video-label">
+                <span>Attack Map</span>
+                <strong>Att. High Map</strong>
+              </span>
+            </button>
+            <button
+              type="button"
+              class="main-paper-video-button"
+              data-video-button
+              data-video-src="static/videos/Movie%206(c)%20bottom.mp4"
+              data-video-ref="Pitch Control Map"
+              data-video-title="Defense High PCV Map"
+              data-video-description="This final-frame pitch-control map highlights stronger defensive coverage, with the defending side reclaiming more key space."
+              aria-selected="false">
+              <span class="main-paper-video-index">08</span>
+              <span class="main-paper-video-label">
+                <span>Defense Map</span>
+                <strong>Def. High Map</strong>
+              </span>
+            </button>
 
-          <figure class="video-card reveal">
-            <video class="video-player" controls preload="none" playsinline>
-              <source src="static/videos/Movie%206(b)%20bottom.mp4" type="video/mp4">
-            </video>
-            <figcaption class="video-meta">
-              <span class="video-ref">Pitch Control Map</span>
-              <h3>Attack High PCV Map</h3>
-              <p>This final-frame pitch-control map shows how attacking control expands into more dangerous offensive areas under PCV
-                guidance.</p>
-            </figcaption>
-          </figure>
+            <div class="main-paper-video-group-title">Language Prompt</div>
+            <button
+              type="button"
+              class="main-paper-video-button"
+              data-video-button
+              data-video-src="static/videos/Movie%207%20middle.mp4"
+              data-video-ref="Language Prompt"
+              data-video-title="LLM Prompt: Move Forward"
+              data-video-description="Prompt: &quot;Make the attacking team move forward more aggressively.&quot; The generated players respond by pushing forward faster toward the defending goal."
+              aria-selected="false">
+              <span class="main-paper-video-index">09</span>
+              <span class="main-paper-video-label">
+                <span>Prompt</span>
+                <strong>Move Forward</strong>
+              </span>
+            </button>
+            <button
+              type="button"
+              class="main-paper-video-button"
+              data-video-button
+              data-video-src="static/videos/Movie%207%20right.mp4"
+              data-video-ref="Language Prompt"
+              data-video-title="LLM Prompt: Stretch the Defense"
+              data-video-description="Prompt: &quot;Make the right winger drift into the corner to stretch the defense and open up more space.&quot; The right winger follows the instruction by moving wide."
+              aria-selected="false">
+              <span class="main-paper-video-index">10</span>
+              <span class="main-paper-video-label">
+                <span>Prompt</span>
+                <strong>Stretch Defense</strong>
+              </span>
+            </button>
 
-          <figure class="video-card reveal">
-            <video class="video-player" controls preload="none" playsinline>
-              <source src="static/videos/Movie%206(c)%20top.mp4" type="video/mp4">
-            </video>
-            <figcaption class="video-meta">
-              <span class="video-ref">Pitch Control Guidance</span>
-              <h3>Defense High PCV Trajectory</h3>
-              <p>This trajectory view shows PCV guidance for the defending team, increasing pressure on the carrier and improving central
-                coverage.</p>
-            </figcaption>
-          </figure>
+            <div class="main-paper-video-group-title">Value Guidance</div>
+            <button
+              type="button"
+              class="main-paper-video-button"
+              data-video-button
+              data-video-src="static/videos/Movie%209(b).mp4"
+              data-video-ref="Value Guidance"
+              data-video-title="Attack High Value"
+              data-video-description="The attacking side is guided by a learned value model, leading players to push higher and closer to goal-scoring areas."
+              aria-selected="false">
+              <span class="main-paper-video-index">11</span>
+              <span class="main-paper-video-label">
+                <span>Attack</span>
+                <strong>Att. High Value</strong>
+              </span>
+            </button>
+            <button
+              type="button"
+              class="main-paper-video-button"
+              data-video-button
+              data-video-src="static/videos/Movie%209(c).mp4"
+              data-video-ref="Value Guidance"
+              data-video-title="Defense High Value"
+              data-video-description="The defending side is guided by the value model to reduce attacking payoff, producing faster pressure on the ball carrier."
+              aria-selected="false">
+              <span class="main-paper-video-index">12</span>
+              <span class="main-paper-video-label">
+                <span>Defense</span>
+                <strong>Def. High Value</strong>
+              </span>
+            </button>
+          </div>
 
-          <figure class="video-card reveal">
-            <video class="video-player" controls preload="none" playsinline>
-              <source src="static/videos/Movie%206(c)%20bottom.mp4" type="video/mp4">
-            </video>
-            <figcaption class="video-meta">
-              <span class="video-ref">Pitch Control Map</span>
-              <h3>Defense High PCV Map</h3>
-              <p>This final-frame pitch-control map highlights stronger defensive coverage, with the defending side reclaiming more key
-                space.</p>
-            </figcaption>
-          </figure>
-
-          <figure class="video-card reveal">
-            <video class="video-player" controls preload="none" playsinline>
-              <source src="static/videos/Movie%207%20middle.mp4" type="video/mp4">
-            </video>
-            <figcaption class="video-meta">
-              <span class="video-ref">Language Prompt</span>
-              <h3>LLM Prompt: Move Forward</h3>
-              <p>Prompt: "Make the attacking team move forward more aggressively." The generated players respond by pushing forward faster
-                toward the defending goal.</p>
-            </figcaption>
-          </figure>
-
-          <figure class="video-card reveal">
-            <video class="video-player" controls preload="none" playsinline>
-              <source src="static/videos/Movie%207%20right.mp4" type="video/mp4">
-            </video>
-            <figcaption class="video-meta">
-              <span class="video-ref">Language Prompt</span>
-              <h3>LLM Prompt: Stretch the Defense</h3>
-              <p>Prompt: "Make the right winger drift into the corner to stretch the defense and open up more space." The right winger
-                follows the instruction by moving wide.</p>
-            </figcaption>
-          </figure>
-
-          <figure class="video-card reveal">
-            <video class="video-player" controls preload="none" playsinline>
-              <source src="static/videos/Movie%209(b).mp4" type="video/mp4">
-            </video>
-            <figcaption class="video-meta">
-              <span class="video-ref">Value Guidance</span>
-              <h3>Attack High Value</h3>
-              <p>The attacking side is guided by a learned value model, leading players to push higher and closer to goal-scoring areas.</p>
-            </figcaption>
-          </figure>
-
-          <figure class="video-card reveal">
-            <video class="video-player" controls preload="none" playsinline>
-              <source src="static/videos/Movie%209(c).mp4" type="video/mp4">
-            </video>
-            <figcaption class="video-meta">
-              <span class="video-ref">Value Guidance</span>
-              <h3>Defense High Value</h3>
-              <p>The defending side is guided by the value model to reduce attacking payoff, producing faster pressure on the ball carrier.</p>
+          <figure class="main-paper-video-viewer">
+            <div class="main-paper-video-player-shell">
+              <video class="video-player main-paper-video-player" controls preload="metadata" playsinline data-main-paper-video>
+                <source src="static/videos/Movie%203(f).mp4" type="video/mp4">
+              </video>
+            </div>
+            <figcaption class="video-meta main-paper-video-meta" aria-live="polite">
+              <span class="video-ref" data-main-paper-video-ref>Conditional Prediction</span>
+              <h3 data-main-paper-video-title>TacticGen-C Prediction</h3>
+              <p data-main-paper-video-description>This clip shows conditional trajectory prediction for a pass event, where player movement is generated while following the observed ball trajectory.</p>
             </figcaption>
           </figure>
         </div>
